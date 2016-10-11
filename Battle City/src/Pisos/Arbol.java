@@ -1,5 +1,7 @@
 package Pisos;
 
+import javax.swing.JLabel;
+
 public class Arbol extends Celda{
 	public Arbol(int x, int y){
 		this.posX=x;
@@ -13,7 +15,6 @@ public class Arbol extends Celda{
 
 	@Override
 	public String getImg() {
-		return "/imagenes/Arbol.png";
+		return "/imagenes/Arbol2.png";
 	}
-	
 }

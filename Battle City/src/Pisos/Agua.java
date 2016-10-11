@@ -15,6 +15,6 @@ public class Agua extends Celda{
 	@Override
 	public String getImg() {
 		// TODO Auto-generated method stub
-		return "/imagenes/Agua.png";
+		return "/imagenes/azul.png";
 	}
 }

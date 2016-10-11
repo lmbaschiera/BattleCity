@@ -14,6 +14,6 @@ public class Metal extends Celda {
 
 	@Override
 	public String getImg() {
-		return "/imagenes/Pared.png";
+		return "/imagenes/blanco.png";
 	}
 }
