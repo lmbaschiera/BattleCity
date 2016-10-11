@@ -19,7 +19,26 @@ public class Ladrillo extends Celda{
 	@Override
 	public String getImg() {
 		// TODO Auto-generated method stub
-		return "/imagenes/Ladrillo.png";
+		return "/imagenes/rojo.png";
+	}
+	
+	public String setImg(){
+		switch(vida){
+		case(4):
+			return "/imagenes/rojo.png";
+		case(3):
+			return "/imagenes/amarillo.png";
+		case(2):
+			return "/imagenes/azul.png";
+		case(1):
+			return "/imagenes/verde.png";
+		case(0):
+			return null;
+		}
+		return null;
+	}
+	public void vida(){
+		vida--;
 	}
 	public boolean PuedePasarDisparo() {
 		// TODO Auto-generated method stub

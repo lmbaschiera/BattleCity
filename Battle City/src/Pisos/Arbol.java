@@ -1,6 +1,7 @@
 package Pisos;
 
 import Game.Mapa;
+import javax.swing.JLabel;
 
 public class Arbol extends Celda{
 	public Arbol(Mapa mapa,int x, int y){
@@ -16,7 +17,7 @@ public class Arbol extends Celda{
 
 	@Override
 	public String getImg() {
-		return "/imagenes/Arbol.png";
+		return "/imagenes/Arbol2.png";
 	}
 	public boolean PuedePasarDisparo() {
 		// TODO Auto-generated method stub
