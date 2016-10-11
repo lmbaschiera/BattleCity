@@ -4,6 +4,7 @@ public abstract class Nivel {
 	protected int GolpesQueResiste;
 	protected int VelocidadM,VelocidadD;
 	protected int DisparosSimultaneos;
+	protected boolean destruyeMetal;
 	
 	public int getGolpesQueResiste(){
 		return this.GolpesQueResiste;
@@ -17,5 +18,6 @@ public abstract class Nivel {
 	public int getDisparosSimultaneos(){
 		return this.DisparosSimultaneos;
 	}
+	public abstract boolean getdestruyeMetal();
 	public abstract Nivel getSiguiente();
 }

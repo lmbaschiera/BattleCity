@@ -16,7 +16,6 @@ import java.io.*;
 public class GUI extends JFrame{
 	private JPanel panel,panelObstaculos,panelFondo;
 	private JLabel label, aux;
-	private ImageIcon[] celdaGrafico;
 	private ImageIcon[] jugadorGrafico;
 	private ImageIcon[] enemigosGrafico;
 	private Jugador player;
@@ -104,17 +103,25 @@ public class GUI extends JFrame{
 						System.out.println(player.subirNivel().getVelocidadM());
 						
 						break;
-					case'g':panelObstaculos.remove(mapa.getCelda(11,2).getGraficos());
+					case'g':panelObstaculos.remove(mapa.getCelda(11,2).getGraficos().getGrafico());
 					mapa.setCelda(null,11,2);
 					
 					panelObstaculos.revalidate();
 					panelObstaculos.repaint();
 					break;
+					case KeyEvent.VK_SPACE:
+						System.out.println("dispare ");	
+						player.efectuarDisparo(null);
+						break;
 					}
+					
 			}
 		}
 	});
 }	
+	public void moverLabel(JLabel move, int x, int y){
+		move.setBounds(x, y,3, 3);
+	}
 	private void mover(int k){
 		player.mover(k);//Movemos el jugador
 		label.setBounds((int)player.getX(),(int)player.getY(),h,w);//Repainteamos
@@ -131,29 +138,34 @@ public class GUI extends JFrame{
 			br = new BufferedReader(new FileReader(file));
 			Celda celda;
 			int columna=0;
+			EntidadGrafica eg;
 			while((sCurrent = br.readLine())!=null){
 				for(int i=0;i<sCurrent.length();i++){
 					char ch=sCurrent.charAt(i);
 					switch(ch){
 					case'1': 	
-						celda=new Ladrillo(i,columna);
+						celda=new Ladrillo(mapa,i,columna);
 						mapa.setCelda(celda,i,columna);	
-						celda.setGraficos(crearLabel(celda.getImg(),i,columna));
+						eg=new EntidadGrafica(crearLabel(celda.getImg(),i,columna));
+						celda.setGraficos(eg);
 						break; 
 					case '2':	
-						celda=new Arbol(i,columna);
+						celda=new Arbol(mapa,i,columna);
 						mapa.setCelda(celda,i,columna);	
-						celda.setGraficos(crearLabel(celda.getImg(),i,columna));
+						eg=new EntidadGrafica(crearLabel(celda.getImg(),i,columna));
+						celda.setGraficos(eg);
 						break;
 					case '3':	
-						celda=new Agua(i,columna);
+						celda=new Agua(mapa,i,columna);
 						mapa.setCelda(celda,i,columna);	
-						celda.setGraficos(crearLabel(celda.getImg(),i,columna));
+						eg=new EntidadGrafica(crearLabel(celda.getImg(),i,columna));
+						celda.setGraficos(eg);
 						break;
 					case '4': 	
-						celda=new Metal(i,columna);
+						celda=new Metal(mapa,i,columna);
 						mapa.setCelda(celda,i,columna);	
-						celda.setGraficos(crearLabel(celda.getImg(),i,columna));
+						eg=new EntidadGrafica(crearLabel(celda.getImg(),i,columna));
+						celda.setGraficos(eg);
 						break;
 					}
 				}
@@ -172,18 +184,11 @@ public class GUI extends JFrame{
 		jugadorGrafico[1]=new ImageIcon(this.getClass().getResource("/imagenes/38.png"));
 		jugadorGrafico[2]=new ImageIcon(this.getClass().getResource("/imagenes/39.png"));
 		jugadorGrafico[3]=new ImageIcon(this.getClass().getResource("/imagenes/40.png"));
-		
-//		celdaGrafico=new ImageIcon[4];
-//		celdaGrafico[0]=new ImageIcon(this.getClass().getResource("/imagenes/Agua.png"));
-//		celdaGrafico[1]=new ImageIcon(this.getClass().getResource("/imagenes/Arbol.png"));
-//		celdaGrafico[2]=new ImageIcon(this.getClass().getResource("/imagenes/Ladrillo.png"));
-//		celdaGrafico[3]=new ImageIcon(this.getClass().getResource());
 	}
 	public JLabel crearLabel(String str,int i,int c){
 		JLabel aux;
 		aux=new JLabel();
 		aux.setBounds(i*h,c*w,h,w);
-		//aux.setBackground(Color.BLACK);
 		aux.setIcon(new ImageIcon(this.getClass().getResource(str)));
 		aux.setOpaque(true);
 		

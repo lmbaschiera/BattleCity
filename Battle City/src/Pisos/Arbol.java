@@ -1,7 +1,10 @@
 package Pisos;
 
+import Game.Mapa;
+
 public class Arbol extends Celda{
-	public Arbol(int x, int y){
+	public Arbol(Mapa mapa,int x, int y){
+		this.mapa=mapa;
 		this.posX=x;
 		this.posY=y;
 	}
@@ -15,5 +18,11 @@ public class Arbol extends Celda{
 	public String getImg() {
 		return "/imagenes/Arbol.png";
 	}
-	
+	public boolean PuedePasarDisparo() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	public void afectar() {}
 }

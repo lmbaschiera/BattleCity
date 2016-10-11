@@ -12,4 +12,7 @@ public class Nivel1 extends Nivel{
 	public Nivel getSiguiente() {
 		return new Nivel2();
 	}
+	public boolean getdestruyeMetal(){
+		return false;
+	}
 }

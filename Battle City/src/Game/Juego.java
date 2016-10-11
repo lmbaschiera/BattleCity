@@ -43,12 +43,27 @@ public class Juego{
 	public Mapa getMapa(){
 		return mapa;
 	}
-	public boolean PuedoEstarAca(float x, float y){
+	public boolean TanquePuedeEstarAca(float x, float y){
 		if(y<0 || x<0 || y>484+32|| x>484+32){
 			return false;
 		}
 		if(mapa.getCelda((int)(x/h),(int) (y/w))!=null)
 			return mapa.getCelda((int)(x/h),(int) (y/w)).PuedePasarTanque();
+		else
+			return true;
+	}
+	public boolean DisparoPuedeEstarAca(float x, float y){
+		if(y<0 || x<0 || y>484+32|| x>484+32){
+			return false;
+		}
+		if(mapa.getCelda((int)(x/h),(int) (y/w))!=null)
+			if(!mapa.getCelda((int)(x/h),(int) (y/w)).PuedePasarDisparo()){
+				mapa.getCelda((int)(x/h),(int) (y/w)).afectar();
+				return false;
+			}
+			else{
+				return true;
+			}
 		else
 			return true;
 	}

@@ -1,14 +1,15 @@
 package Pisos;
 
-import javax.swing.JLabel;
-
+import Game.EntidadGrafica;
 import Game.GameObject;
+import Game.Mapa;
 
-public abstract class Celda {
+public abstract class Celda implements GameObject {
 	protected float posX,posY;
 	protected String img;
 	protected GameObject obj;
-	protected JLabel label;//protected EntidadGrafica grafico;
+	protected EntidadGrafica grafico;
+	protected Mapa mapa;
 	public void setX(float x){
 		posX= x;
 	}
@@ -21,11 +22,11 @@ public abstract class Celda {
 		return posX;
 		
 	}
-	public void setGraficos(JLabel jl){
-		this.label=jl;
+	public void setGraficos(EntidadGrafica jl){
+		this.grafico=jl;
 	}
-	public JLabel getGraficos(){
-		return label;
+	public EntidadGrafica getGraficos(){
+		return grafico;
 	}
 	public float getY() {
 		return posY;
@@ -35,4 +36,5 @@ public abstract class Celda {
 	}
 	public abstract String getImg();
 	public abstract boolean PuedePasarTanque();
+	public abstract boolean PuedePasarDisparo();
 }
