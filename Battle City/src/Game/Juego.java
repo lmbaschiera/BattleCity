@@ -11,26 +11,36 @@ import Tanque.*;
 public class Juego{
 	private Jugador player;
 	private Enemigo[] enemigos;
-	private PowerUp powerUpActivo;
-	private GUI gui;
-	private Mapa mapa;
+	private InterfazGui gui;
+	private InterfazMapa mapa;
 	private int puntaje;
 	private static int h=40;
 	private static int w=40;
-	public Juego(GUI gui){
+	public Juego(){
 		puntaje=0;
 		enemigos= new Enemigo[15];
-		player=new Jugador(0,0,this);
+		player=new Jugador(this,0,0);
+		gui=new gui(this);
 		mapa=new Mapa(13);
-		
+		mapa.armarMapa("mapa1.txt");
+		gui.levantarMapa(mapa);
+		mapa.setGui(gui);
 	}
 	public int getPuntaje(){
 		return puntaje;
 	}
-	public void crearMalo(){
-		Enemigo e=new Enemigo();
+	
+	public void disparar(Disparo d){
+		Thread t=new Thread(d);
+		t.start();
+	}
+	public Enemigo crearMalo(){
+		Enemigo e=new Enemigo(0,0,this);
+		gui.levantarEntidad(e);
 		enemigos[0]=e;
-		
+		Thread t1 = new Thread(e);
+		t1.start();
+		return e;
 	}
 	public void eliminarMalo(){
 		
@@ -39,8 +49,11 @@ public class Juego{
 	public Jugador getJugador(){
 		return player;
 	}
+	public InterfazGui getGui(){
+		return gui;
+	}
 	
-	public Mapa getMapa(){
+	public InterfazMapa getMapa(){
 		return mapa;
 	}
 	public boolean TanquePuedeEstarAca(float x, float y){
@@ -58,7 +71,6 @@ public class Juego{
 		}
 		if(mapa.getCelda((int)(x/h),(int) (y/w))!=null)
 			if(!mapa.getCelda((int)(x/h),(int) (y/w)).PuedePasarDisparo()){
-				mapa.getCelda((int)(x/h),(int) (y/w)).afectar();
 				return false;
 			}
 			else{
@@ -68,4 +80,3 @@ public class Juego{
 			return true;
 	}
 }
-

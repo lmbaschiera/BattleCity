@@ -1,9 +1,12 @@
 package Pisos;
 
+import Game.EntidadGrafica;
 import Game.Mapa;
+import Tanque.Disparo;
 
 public class Agua extends Celda{
 	public Agua(Mapa mapa,int x, int y){
+		this.grafico=new EntidadGrafica("/imagenes/azul.png", 40,40);
 		this.mapa=mapa;
 		this.posX=x;
 		this.posY=y;
@@ -15,11 +18,7 @@ public class Agua extends Celda{
 		return false;
 	}
 
-	@Override
-	public String getImg() {
-		// TODO Auto-generated method stub
-		return "/imagenes/azul.png";
-	}
+	
 	
 	@Override
 	public boolean PuedePasarDisparo() {
@@ -28,5 +27,15 @@ public class Agua extends Celda{
 	}
 
 	@Override
-	public void afectar() {}
+	public void serAfectado(Disparo d) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void vida(boolean p) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

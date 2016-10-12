@@ -3,18 +3,24 @@ package Tanque;
 import java.awt.event.KeyEvent;
 
 import Game.EntidadGrafica;
+import Game.InterfazGui;
 import Game.Juego;
+import PU.PowerUp;
 public class Jugador extends Tanque {
 	private boolean PuedoMoverme;
-	private Juego juego;
 	
 	
-	public Jugador(float x, float y, Juego juego){
-		level= new Nivel1();
+	public Jugador(Juego juego,float x, float y ){
+		this.juego=juego;
+		this.grafico=new EntidadGrafica("/imagenes/37.png", 32,32);
+		level= new Nivel4();
 		disparosDisponibles=level.getDisparosSimultaneos();
 		posX= x;
 		posY= y;
-		this.juego=juego;
+		
+	}
+	public void setGui(InterfazGui gui){
+		this.gui=gui;
 	}
 	/*
 	 * Actualiza la posicion del jugador en funcion de la tecla pasada por parametro
@@ -46,32 +52,35 @@ public class Jugador extends Tanque {
 				}
 				break;
 			}
+			gui.moverEntidad(this.getGrafico(), (int)posX, (int)posY);
 			lastMovement=k;
 	}
-	public void efectuarDisparo(EntidadGrafica jl){
+	public void efectuarDisparo(){
 		if(disparosDisponibles>0){
-			Disparo disparo=new Disparo(this,level.VelocidadD,level.destruyeMetal,jl,posX+16,posY+16);
 			
 			int corrimiento_x=0,corrimiento_y=0;
 			switch(lastMovement){
 			case KeyEvent.VK_UP :
-				corrimiento_y=-5;
+				corrimiento_y=-1;
 				break;
 			case KeyEvent.VK_DOWN :
-				corrimiento_y=5;
+				corrimiento_y=1;
 				break;
 			case KeyEvent.VK_RIGHT :
-				corrimiento_x=5;
+				corrimiento_x=1;
 				break;
 			case KeyEvent.VK_LEFT :
-				corrimiento_x=-5;
+				corrimiento_x=-1;
 				break;
 			}
-			disminuirDisparosDisponibles();
-			disparo.run(juego,corrimiento_x,corrimiento_y);
+			Disparo disparo=new Disparo(this.juego,gui,this,level.VelocidadD,level.getdestruyeMetal(),(int)posX+16,(int)posY+16,corrimiento_x,corrimiento_y);
+		//	System.out.println(""+this.disparosDisponibles);
+			disparosDisponibles--;
+			gui.levantarEntidad(disparo);
+			juego.disparar(disparo);
+			System.out.println(""+this.disparosDisponibles);
 		}
 	}
-	
 	public float getX(){
 		return posX;
 	}
@@ -83,11 +92,21 @@ public class Jugador extends Tanque {
 		return true;
 	}
 	public Nivel subirNivel(){
-		return level=level.getSiguiente();
+		level=level.getSiguiente();
+		disparosDisponibles=level.getDisparosSimultaneos();
+		golpesQueResiste=level.GolpesQueResiste;
+		return level;
 	}
 	public boolean a(){
 		return PuedoMoverme;
 	}
-	@Override
-	public void afectar() {}
+	
+	public void serAfectado(PowerUp p){
+		//p.afectar(this);
+	}
+	public void reducirVida(){}
+	public void serAfectado(Disparo d){
+		//d.afectar(this);
+	}
+	
 }

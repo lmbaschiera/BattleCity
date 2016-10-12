@@ -2,14 +2,15 @@ package Pisos;
 
 import Game.EntidadGrafica;
 import Game.GameObject;
+import Game.InterfazMapa;
 import Game.Mapa;
+import Tanque.Disparo;
 
-public abstract class Celda implements GameObject {
-	protected float posX,posY;
-	protected String img;
+public abstract class Celda extends GameObject {
+	
 	protected GameObject obj;
-	protected EntidadGrafica grafico;
-	protected Mapa mapa;
+	protected int vida;
+	protected InterfazMapa mapa;
 	public void setX(float x){
 		posX= x;
 	}
@@ -20,12 +21,9 @@ public abstract class Celda implements GameObject {
 	
 	public float getX() {
 		return posX;
-		
 	}
-	public void setGraficos(EntidadGrafica jl){
-		this.grafico=jl;
-	}
-	public EntidadGrafica getGraficos(){
+	
+	public EntidadGrafica getEntidadGrafica(){
 		return grafico;
 	}
 	public float getY() {
@@ -34,7 +32,8 @@ public abstract class Celda implements GameObject {
 	public void setGObject(GameObject obj){
 		this.obj=obj;
 	}
-	public abstract String getImg();
 	public abstract boolean PuedePasarTanque();
 	public abstract boolean PuedePasarDisparo();
+	public abstract void serAfectado(Disparo d);
+	public abstract void vida(boolean romperMetal);
 }
