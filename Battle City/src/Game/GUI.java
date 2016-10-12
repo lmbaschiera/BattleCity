@@ -7,36 +7,34 @@ import Pisos.Arbol;
 import Pisos.Celda;
 import Pisos.Ladrillo;
 import Pisos.Metal;
+import Tanque.Enemigo;
 import Tanque.Jugador;
 
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
 
-public class GUI extends JFrame{
+public class gui extends JFrame implements InterfazGui{
 	private JPanel panel,panelObstaculos,panelFondo;
-	private JLabel label, aux;
 	private ImageIcon[] jugadorGrafico;
-	private ImageIcon[] enemigosGrafico;
+	private ImageIcon[] enemigoGrafico;
 	private Jugador player;
-	private Mapa mapa;
+	private InterfazMapa mapa;
 	private Juego juego;
-	private JButton boton;
 	private static final int h=40;
 	private static final int w=40;
 	private boolean creado;
 	
 	
-	public GUI(){
+	public gui(Juego juego){
 		super();
-		aux=null;
-		juego=new Juego(this);
-	
+		this.juego=juego;
+		
+		player=juego.getJugador();
+		player.setGui(this);
+		
 		
 		creado=false;
-		
-		this.player = juego.getJugador();
-		this.mapa= juego.getMapa();
 		
 		setSize(new Dimension(w*14, h*14)); // 1024 768
 		getContentPane().setLayout(null);
@@ -51,7 +49,7 @@ public class GUI extends JFrame{
 		
 		
 		inicializarImagenes();
-		armarMapa("mapa1.txt");
+		
 		
 		
 		setContentPane(panelObstaculos);
@@ -59,51 +57,47 @@ public class GUI extends JFrame{
 		
 		panelObstaculos.setVisible(true);
 		
-		label = new JLabel();
-		label.setBounds(0, 0,32,32);
+		player.getGrafico().getGrafico().setBounds((int)player.getX(), (int)player.getY(),32,32);
 		
-		label.setIcon(new ImageIcon(this.getClass().getResource("/imagenes/37.png")));
-		label.setOpaque(false);
-		panelObstaculos.add(label);
+		player.getGrafico().getGrafico().setOpaque(false);
+		panelObstaculos.add(player.getGrafico().getGrafico());
 		
-		getContentPane().setComponentZOrder(label, 0);
+		getContentPane().setComponentZOrder(player.getGrafico().getGrafico(), 0);
 		this.setVisible(true);
-		
 		addKeyListener(new KeyAdapter() {
 			@Override
+			
 			public void keyPressed(KeyEvent arg0) {
+				JLabel aux=null;
 				//arg0.getKeyChar()=='t' || arg0.getKeyChar()=='g' || 
 				if ((arg0.getKeyCode()>36 && arg0.getKeyCode()<41)){
-						mover(arg0.getKeyCode());
+						player.mover(arg0.getKeyCode());
+						player.getGrafico().getGrafico().setIcon(jugadorGrafico[arg0.getKeyCode()-37]);
 				}
 				else{
 					switch(arg0.getKeyChar()){
 					case 't':
 						if(!creado){
-							aux=new JLabel();
+							
 							creado=true;
 							juego.crearMalo();
-							aux.setIcon(new ImageIcon(this.getClass().getResource("/imagenes/Enemy1.png")));
-							panelObstaculos.add(aux);
-							aux.setBounds(50,60,h,w);
-							panelObstaculos.setComponentZOrder(aux,0);
+							
+							
 						}
 						else{
 							creado=false;
 							juego.eliminarMalo();
 							System.out.println(juego.getPuntaje());
-							//Container cont=aux.getParent();
-							panelObstaculos.remove(aux);
+							
 							panelObstaculos.revalidate();
 							panelObstaculos.repaint();
 						}
 					break;
 					case'p':
-						
-						System.out.println(player.subirNivel().getVelocidadM());
+						player.subirNivel().getVelocidadM();
 						
 						break;
-					case'g':panelObstaculos.remove(mapa.getCelda(11,2).getGraficos().getGrafico());
+					case'g':panelObstaculos.remove(mapa.getCelda(11,2).getEntidadGrafica().getGrafico());
 					mapa.setCelda(null,11,2);
 					
 					panelObstaculos.revalidate();
@@ -111,7 +105,7 @@ public class GUI extends JFrame{
 					break;
 					case KeyEvent.VK_SPACE:
 						System.out.println("dispare ");	
-						player.efectuarDisparo(null);
+						player.efectuarDisparo();
 						break;
 					}
 					
@@ -119,64 +113,22 @@ public class GUI extends JFrame{
 		}
 	});
 }	
-	public void moverLabel(JLabel move, int x, int y){
-		move.setBounds(x, y,3, 3);
+	public void moverEntidad(EntidadGrafica move, int x, int y){
+		move.getGrafico().setBounds(x, y, move.getW(), move.getH());
+		this.revalidate();
+		this.repaint();
 	}
-	private void mover(int k){
-		player.mover(k);//Movemos el jugador
-		label.setBounds((int)player.getX(),(int)player.getY(),h,w);//Repainteamos
-		label.setIcon(jugadorGrafico[k-37]);
-
-		//System.out.println(player.getX() +" y = "+ player.getY());
-	}
-
-	private void armarMapa(String str){
-		BufferedReader br = null;
-		String file = str;
-		String sCurrent;
-		try {
-			br = new BufferedReader(new FileReader(file));
-			Celda celda;
-			int columna=0;
-			EntidadGrafica eg;
-			while((sCurrent = br.readLine())!=null){
-				for(int i=0;i<sCurrent.length();i++){
-					char ch=sCurrent.charAt(i);
-					switch(ch){
-					case'1': 	
-						celda=new Ladrillo(mapa,i,columna);
-						mapa.setCelda(celda,i,columna);	
-						eg=new EntidadGrafica(crearLabel(celda.getImg(),i,columna));
-						celda.setGraficos(eg);
-						break; 
-					case '2':	
-						celda=new Arbol(mapa,i,columna);
-						mapa.setCelda(celda,i,columna);	
-						eg=new EntidadGrafica(crearLabel(celda.getImg(),i,columna));
-						celda.setGraficos(eg);
-						break;
-					case '3':	
-						celda=new Agua(mapa,i,columna);
-						mapa.setCelda(celda,i,columna);	
-						eg=new EntidadGrafica(crearLabel(celda.getImg(),i,columna));
-						celda.setGraficos(eg);
-						break;
-					case '4': 	
-						celda=new Metal(mapa,i,columna);
-						mapa.setCelda(celda,i,columna);	
-						eg=new EntidadGrafica(crearLabel(celda.getImg(),i,columna));
-						celda.setGraficos(eg);
-						break;
-					}
+	public void levantarMapa(InterfazMapa map){
+		this.mapa=map;
+		for(int i=0;i<mapa.getTamaño();i++){
+			for(int j=0;j<mapa.getTamaño();j++){
+				if(mapa.getCelda(i, j)!=null){
+					panelObstaculos.add(mapa.getCelda(i, j).getEntidadGrafica().getGrafico());
+					mapa.getCelda(i, j).getEntidadGrafica().getGrafico().setOpaque(false);
+					mapa.getCelda(i, j).getEntidadGrafica().getGrafico().setBounds(i*w, j*h, w, h);
 				}
-				columna+=1;
 			}
-
-			System.out.println("checkpoint");
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}	
+		}
 	}
 	private void inicializarImagenes(){
 		jugadorGrafico=new ImageIcon[4];
@@ -184,50 +136,41 @@ public class GUI extends JFrame{
 		jugadorGrafico[1]=new ImageIcon(this.getClass().getResource("/imagenes/38.png"));
 		jugadorGrafico[2]=new ImageIcon(this.getClass().getResource("/imagenes/39.png"));
 		jugadorGrafico[3]=new ImageIcon(this.getClass().getResource("/imagenes/40.png"));
+		enemigoGrafico = new ImageIcon[4];
+		enemigoGrafico[0] = new ImageIcon(this.getClass().getResource("/imagenes/enemy37.png"));
+		enemigoGrafico[1] = new ImageIcon(this.getClass().getResource("/imagenes/enemy38.png"));
+		enemigoGrafico[2] = new ImageIcon(this.getClass().getResource("/imagenes/enemy39.png"));
+		enemigoGrafico[3] = new ImageIcon(this.getClass().getResource("/imagenes/enemy40.png"));
 	}
-	public JLabel crearLabel(String str,int i,int c){
-		JLabel aux;
-		aux=new JLabel();
-		aux.setBounds(i*h,c*w,h,w);
-		aux.setIcon(new ImageIcon(this.getClass().getResource(str)));
-		aux.setOpaque(true);
-		
-		panelObstaculos.add(aux); 
-		return aux;
-		//getContentPane().setComponentZOrder(aux, 2);
+	
+	
+	public void levantarEntidad(GameObject go){
+		JLabel l=go.getGrafico().getGrafico();
+		this.panelObstaculos.add(l);
+		this.panelObstaculos.setComponentZOrder(l, 1);
+		l.setBounds((int)go.getPosX()*40,(int) go.getPosY()*40, go.getGrafico().getW(), go.getGrafico().getH());
 	}
-	private class oyente implements MouseListener{
-
-		@Override
-		public void mouseClicked(MouseEvent arg0) {
-			
-		}
-
-		@Override
-		public void mouseEntered(MouseEvent arg0) {
-			// TODO Auto-generated method stub
-			
-		}
-
-		@Override
-		public void mouseExited(MouseEvent arg0) {
-			// TODO Auto-generated method stub
-			
-		}
-
-		@Override
-		public void mousePressed(MouseEvent arg0) {
-			// TODO Auto-generated method stub
-			
-		}
-
-		@Override
-		public void mouseReleased(MouseEvent arg0) {
-			// TODO Auto-generated method stub
-			
-		}
-		
+	
+	public void eliminarEntidad(EntidadGrafica e) {
+		panelObstaculos.remove(e.getGrafico());
+		panelObstaculos.revalidate();
+		panelObstaculos.repaint();
 	}
+	@Override
+	public int getMaxX() {
+		return this.getWidth();
 	}
-
-
+	@Override
+	public int getMaxY() {
+		return this.getHeight();
+	}
+	
+	public InterfazMapa getMapa(){
+		return mapa;
+	}
+	@Override
+	public void cambiarImagen(Enemigo enemigo, int dir) {
+		enemigo.getGrafico().getGrafico().setIcon(enemigoGrafico[dir]);
+	}
+	
+}
