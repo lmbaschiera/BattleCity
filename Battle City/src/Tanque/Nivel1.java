@@ -10,11 +10,11 @@ public class Nivel1 extends Nivel{
 		this.GolpesQueResiste=1;
 		this.VelocidadD=1;
 		this.VelocidadM=1;  ///// aca tiene que ir 2
-		this.img=new EntidadGrafica[4];
-		this.img[0]=new EntidadGrafica("/imagenes/lvl1-37.png", 32, 32);
-		this.img[1]=new EntidadGrafica("/imagenes/lvl1-38.png", 32, 32);
-		this.img[2]=new EntidadGrafica("/imagenes/lvl1-39.png", 32, 32);
-		this.img[3]=new EntidadGrafica("/imagenes/lvl1-40.png", 32, 32);
+		this.img=new String[4];
+		this.img[0]="/imagenes/lvl1-37.png";
+		this.img[1]="/imagenes/lvl1-38.png";
+		this.img[2]="/imagenes/lvl1-39.png";
+		this.img[3]="/imagenes/lvl1-40.png";
 	}
 
 	@Override

@@ -10,11 +10,11 @@ public class Nivel3 extends Nivel{
 		this.GolpesQueResiste=2;
 		this.VelocidadD=2;
 		this.VelocidadM=2;
-		this.img=new EntidadGrafica[4];
-		this.img[0]=new EntidadGrafica("/imagenes/lvl3-37.png", 32, 32);
-		this.img[1]=new EntidadGrafica("/imagenes/lvl3-38.png", 32, 32);
-		this.img[2]=new EntidadGrafica("/imagenes/lvl3-39.png", 32, 32);
-		this.img[3]=new EntidadGrafica("/imagenes/lvl3-40.png", 32, 32);
+		this.img=new String[4];
+		this.img[0]="/imagenes/lvl3-37.png";
+		this.img[1]="/imagenes/lvl3-38.png";
+		this.img[2]="/imagenes/lvl3-39.png";
+		this.img[3]="/imagenes/lvl3-40.png";
 	}
 
 	@Override

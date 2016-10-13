@@ -56,8 +56,10 @@ public class Enemigo extends Tanque implements Runnable{
 				choque = true;
 			break;
 		}
-		lastMovement=dir;
-		juego.getGui().cambiarImagen(this,dir);
+		if(lastMovement!=dir){
+			lastMovement=dir;
+			getGrafico().cambiarImagen(getNivel().getImg(dir));
+		}
 		juego.getGui().moverEntidad(grafico,(int) posX,(int) posY);
 	}
 	

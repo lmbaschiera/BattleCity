@@ -7,7 +7,7 @@ public abstract class Nivel {
 	protected int VelocidadM,VelocidadD;
 	protected int DisparosSimultaneos;
 	protected boolean destruyeMetal;
-	protected EntidadGrafica[] img;
+	protected String[] img;
 	
 	public int getGolpesQueResiste(){
 		return this.GolpesQueResiste;
@@ -23,7 +23,7 @@ public abstract class Nivel {
 	}
 	public abstract boolean getdestruyeMetal();
 	public abstract Nivel getSiguiente();
-	public EntidadGrafica[] getImg(){
-		return img;
+	public String getImg(int i){
+		return img[i];
 	}
 }

@@ -10,5 +10,5 @@ public interface InterfazGui {
 	public int getMaxX();
 	public int getMaxY();
 	public InterfazMapa getMapa();
-	public void cambiarImagen(Enemigo enemigo, int dir);
+	//public void cambiarImagen(Enemigo enemigo, int dir);
 }

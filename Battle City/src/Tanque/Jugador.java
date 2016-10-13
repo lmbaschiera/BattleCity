@@ -11,7 +11,7 @@ public class Jugador extends Tanque {
 	
 	public Jugador(Juego juego,float x, float y ){
 		this.juego=juego;
-		this.grafico=new EntidadGrafica("/imagenes/lvl1-37.png", 32,32);
+		this.grafico=new EntidadGrafica("/imagenes/lvl4-37.png", 32,32);
 		level= new Nivel4();
 		disparosDisponibles=level.getDisparosSimultaneos();
 		posX= x;
@@ -51,8 +51,12 @@ public class Jugador extends Tanque {
 				}
 				break;
 			}
+			if(lastMovement!=k){
+				lastMovement=k;
+				getGrafico().cambiarImagen(getNivel().getImg(k-37));
+			}
 			gui.moverEntidad(this.getGrafico(), (int)posX, (int)posY);
-			lastMovement=k;
+			
 	}
 	public void efectuarDisparo(){
 		if(disparosDisponibles>0){
@@ -92,6 +96,7 @@ public class Jugador extends Tanque {
 	}
 	public Nivel subirNivel(){
 		level=level.getSiguiente();
+		this.getGrafico().cambiarImagen(this.getNivel().getImg(this.lastMovement-37));
 		disparosDisponibles=level.getDisparosSimultaneos();
 		golpesQueResiste=level.GolpesQueResiste;
 		return level;

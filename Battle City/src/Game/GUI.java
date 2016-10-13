@@ -72,8 +72,6 @@ public class gui extends JFrame implements InterfazGui{
 				//arg0.getKeyChar()=='t' || arg0.getKeyChar()=='g' || 
 				if ((arg0.getKeyCode()>36 && arg0.getKeyCode()<41)){
 						player.mover(arg0.getKeyCode());
-					//	player.getGrafico().getGrafico().setIcon(jugadorGrafico[arg0.getKeyCode()-37]);
-						player.getGrafico().cambiarImagen(jugadorGrafico[arg0.getKeyCode()-37].getImagen());
 				}
 				else{
 					switch(arg0.getKeyChar()){
@@ -132,14 +130,14 @@ public class gui extends JFrame implements InterfazGui{
 		}
 	}
 	private void inicializarImagenes(){
-		jugadorGrafico=new EntidadGrafica[4];
+		/*jugadorGrafico=new EntidadGrafica[4];
 		jugadorGrafico=player.getNivel().getImg();
 		enemigoGrafico=new EntidadGrafica[4];
 		enemigoGrafico[0]=new EntidadGrafica("/imagenes/enemy1-37.png", 32, 32);
 		enemigoGrafico[1]=new EntidadGrafica("/imagenes/enemy1-38.png", 32, 32);
 		enemigoGrafico[2]=new EntidadGrafica("/imagenes/enemy1-39.png", 32, 32);
 		enemigoGrafico[3]=new EntidadGrafica("/imagenes/enemy1-40.png", 32, 32);
-		/*jugadorGrafico=new ImageIcon[4];
+		jugadorGrafico=new ImageIcon[4];
 		jugadorGrafico[0]=new ImageIcon(this.getClass().getResource("/imagenes/37.png"));
 		jugadorGrafico[1]=new ImageIcon(this.getClass().getResource("/imagenes/38.png"));
 		jugadorGrafico[2]=new ImageIcon(this.getClass().getResource("/imagenes/39.png"));
@@ -175,9 +173,6 @@ public class gui extends JFrame implements InterfazGui{
 	public InterfazMapa getMapa(){
 		return mapa;
 	}
-	@Override
-	public void cambiarImagen(Enemigo enemigo, int dir) {
-		enemigo.getGrafico().cambiarImagen(enemigo.getNivel().getImg()[dir].getImagen());
-	}
+	
 	
 }
