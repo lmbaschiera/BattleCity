@@ -1,11 +1,20 @@
 package Tanque;
 
+import javax.swing.ImageIcon;
+
+import Game.EntidadGrafica;
+
 public class Nivel1 extends Nivel{
 	public Nivel1(){
 		this.DisparosSimultaneos=1;
 		this.GolpesQueResiste=1;
 		this.VelocidadD=1;
 		this.VelocidadM=1;  ///// aca tiene que ir 2
+		this.img=new EntidadGrafica[4];
+		this.img[0]=new EntidadGrafica("/imagenes/lvl1-37.png", 32, 32);
+		this.img[1]=new EntidadGrafica("/imagenes/lvl1-38.png", 32, 32);
+		this.img[2]=new EntidadGrafica("/imagenes/lvl1-39.png", 32, 32);
+		this.img[3]=new EntidadGrafica("/imagenes/lvl1-40.png", 32, 32);
 	}
 
 	@Override

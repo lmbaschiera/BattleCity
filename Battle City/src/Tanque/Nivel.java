@@ -1,10 +1,13 @@
 package Tanque;
 
+import Game.EntidadGrafica;
+
 public abstract class Nivel {
 	protected int GolpesQueResiste;
 	protected int VelocidadM,VelocidadD;
 	protected int DisparosSimultaneos;
 	protected boolean destruyeMetal;
+	protected EntidadGrafica[] img;
 	
 	public int getGolpesQueResiste(){
 		return this.GolpesQueResiste;
@@ -20,4 +23,7 @@ public abstract class Nivel {
 	}
 	public abstract boolean getdestruyeMetal();
 	public abstract Nivel getSiguiente();
+	public EntidadGrafica[] getImg(){
+		return img;
+	}
 }

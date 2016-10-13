@@ -15,16 +15,9 @@ public class Enemigo extends Tanque implements Runnable{
 		disparosDisponibles=level.getDisparosSimultaneos();
 		posX= x;
 		posY= y;
-		this.grafico = new EntidadGrafica("/imagenes/enemy37.png",32,32);
+		this.grafico = new EntidadGrafica("/imagenes/enemy1-37.png",32,32);
 		super.juego=juego;
-		
-		
 	}
-	
-
-	
-
-	
 
 	public void mover(int dir){
 		switch(dir){

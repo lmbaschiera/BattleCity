@@ -9,10 +9,9 @@ import PU.PowerUp;
 public class Jugador extends Tanque {
 	private boolean PuedoMoverme;
 	
-	
 	public Jugador(Juego juego,float x, float y ){
 		this.juego=juego;
-		this.grafico=new EntidadGrafica("/imagenes/37.png", 32,32);
+		this.grafico=new EntidadGrafica("/imagenes/lvl1-37.png", 32,32);
 		level= new Nivel4();
 		disparosDisponibles=level.getDisparosSimultaneos();
 		posX= x;

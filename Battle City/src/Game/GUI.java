@@ -16,8 +16,8 @@ import java.io.*;
 
 public class gui extends JFrame implements InterfazGui{
 	private JPanel panel,panelObstaculos,panelFondo;
-	private ImageIcon[] jugadorGrafico;
-	private ImageIcon[] enemigoGrafico;
+	private EntidadGrafica[] jugadorGrafico;
+	private EntidadGrafica[] enemigoGrafico;
 	private Jugador player;
 	private InterfazMapa mapa;
 	private Juego juego;
@@ -72,7 +72,8 @@ public class gui extends JFrame implements InterfazGui{
 				//arg0.getKeyChar()=='t' || arg0.getKeyChar()=='g' || 
 				if ((arg0.getKeyCode()>36 && arg0.getKeyCode()<41)){
 						player.mover(arg0.getKeyCode());
-						player.getGrafico().getGrafico().setIcon(jugadorGrafico[arg0.getKeyCode()-37]);
+					//	player.getGrafico().getGrafico().setIcon(jugadorGrafico[arg0.getKeyCode()-37]);
+						player.getGrafico().cambiarImagen(jugadorGrafico[arg0.getKeyCode()-37].getImagen());
 				}
 				else{
 					switch(arg0.getKeyChar()){
@@ -131,7 +132,14 @@ public class gui extends JFrame implements InterfazGui{
 		}
 	}
 	private void inicializarImagenes(){
-		jugadorGrafico=new ImageIcon[4];
+		jugadorGrafico=new EntidadGrafica[4];
+		jugadorGrafico=player.getNivel().getImg();
+		enemigoGrafico=new EntidadGrafica[4];
+		enemigoGrafico[0]=new EntidadGrafica("/imagenes/enemy1-37.png", 32, 32);
+		enemigoGrafico[1]=new EntidadGrafica("/imagenes/enemy1-38.png", 32, 32);
+		enemigoGrafico[2]=new EntidadGrafica("/imagenes/enemy1-39.png", 32, 32);
+		enemigoGrafico[3]=new EntidadGrafica("/imagenes/enemy1-40.png", 32, 32);
+		/*jugadorGrafico=new ImageIcon[4];
 		jugadorGrafico[0]=new ImageIcon(this.getClass().getResource("/imagenes/37.png"));
 		jugadorGrafico[1]=new ImageIcon(this.getClass().getResource("/imagenes/38.png"));
 		jugadorGrafico[2]=new ImageIcon(this.getClass().getResource("/imagenes/39.png"));
@@ -140,9 +148,8 @@ public class gui extends JFrame implements InterfazGui{
 		enemigoGrafico[0] = new ImageIcon(this.getClass().getResource("/imagenes/enemy37.png"));
 		enemigoGrafico[1] = new ImageIcon(this.getClass().getResource("/imagenes/enemy38.png"));
 		enemigoGrafico[2] = new ImageIcon(this.getClass().getResource("/imagenes/enemy39.png"));
-		enemigoGrafico[3] = new ImageIcon(this.getClass().getResource("/imagenes/enemy40.png"));
+		enemigoGrafico[3] = new ImageIcon(this.getClass().getResource("/imagenes/enemy40.png"));*/
 	}
-	
 	
 	public void levantarEntidad(GameObject go){
 		JLabel l=go.getGrafico().getGrafico();
@@ -170,7 +177,7 @@ public class gui extends JFrame implements InterfazGui{
 	}
 	@Override
 	public void cambiarImagen(Enemigo enemigo, int dir) {
-		enemigo.getGrafico().getGrafico().setIcon(enemigoGrafico[dir]);
+		enemigo.getGrafico().cambiarImagen(enemigo.getNivel().getImg()[dir].getImagen());
 	}
 	
 }
