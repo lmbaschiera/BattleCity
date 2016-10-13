@@ -11,7 +11,7 @@ public class Enemigo extends Tanque implements Runnable{
 	boolean choque;
 	public Enemigo(float x, float y, Juego juego){
 		
-		level= new Nivel1();
+		level= new NivelRapido();
 		disparosDisponibles=level.getDisparosSimultaneos();
 		posX= x;
 		posY= y;

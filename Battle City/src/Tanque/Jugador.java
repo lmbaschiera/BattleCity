@@ -76,12 +76,10 @@ public class Jugador extends Tanque {
 				corrimiento_x=-1;
 				break;
 			}
-			Disparo disparo=new Disparo(this.juego,gui,this,level.VelocidadD,level.getdestruyeMetal(),(int)posX+16,(int)posY+16,corrimiento_x,corrimiento_y);
-		//	System.out.println(""+this.disparosDisponibles);
+			Disparo disparo=new Disparo(this.juego,gui,this,level.VelocidadD,level.getdestruyeMetal(),(int)posX+13,(int)posY+13,corrimiento_x,corrimiento_y);
 			disparosDisponibles--;
 			gui.levantarEntidad(disparo);
 			juego.disparar(disparo);
-			System.out.println(""+this.disparosDisponibles);
 		}
 	}
 	public float getX(){

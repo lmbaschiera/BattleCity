@@ -1,9 +1,5 @@
 package Tanque;
 
-import javax.swing.ImageIcon;
-
-import Game.EntidadGrafica;
-
 public class Nivel2 extends Nivel {
 	public Nivel2(){
 		this.DisparosSimultaneos=1;
