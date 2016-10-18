@@ -7,6 +7,10 @@ public class Nivel4 extends Nivel {
 		this.VelocidadD=3;
 		this.VelocidadM=2;
 		this.img=new String[4];
+		/*this.img[0]="/imagenes/alternativo37.png";
+		this.img[1]="/imagenes/alternativo38.png";
+		this.img[2]="/imagenes/alternativo39.png";
+		this.img[3]="/imagenes/alternativo40.png";*/
 		this.img[0]="/imagenes/lvl4-37.png";
 		this.img[1]="/imagenes/lvl4-38.png";
 		this.img[2]="/imagenes/lvl4-39.png";

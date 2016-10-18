@@ -85,7 +85,7 @@ public class gui extends JFrame implements InterfazGui{
 						}
 						else{
 							creado=false;
-							juego.eliminarMalo();
+						//	juego.eliminarMalo();
 							System.out.println(juego.getPuntaje());
 							
 							panelObstaculos.revalidate();

@@ -1,6 +1,5 @@
 package Tanque;
 
-import java.awt.event.KeyEvent;
 import java.util.Random;
 
 import Game.EntidadGrafica;
@@ -11,7 +10,7 @@ public class Enemigo extends Tanque implements Runnable{
 	boolean choque;
 	public Enemigo(float x, float y, Juego juego){
 		
-		level= new NivelRapido();
+		level= new NivelPoder();
 		disparosDisponibles=level.getDisparosSimultaneos();
 		posX= x;
 		posY= y;
@@ -82,7 +81,7 @@ public class Enemigo extends Tanque implements Runnable{
 				mover(direccion);
 			
 			try {
-				Thread.sleep(50);
+				Thread.sleep(30);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

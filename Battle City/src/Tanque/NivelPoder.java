@@ -7,10 +7,10 @@ public class NivelPoder extends Nivel{
 		this.VelocidadD=3;
 		this.VelocidadM=2;
 		this.img=new String[4];
-		this.img[0]="/imagenes/enemy2-37.png";
-		this.img[1]="/imagenes/enemy2-38.png";
-		this.img[2]="/imagenes/enemy2-39.png";
-		this.img[3]="/imagenes/enemy2-40.png";
+		this.img[0]="/imagenes/helicoptero37.gif";
+		this.img[1]="/imagenes/helicoptero38.gif";
+		this.img[2]="/imagenes/helicoptero39.gif";
+		this.img[3]="/imagenes/helicoptero40.gif";
 	}
 
 	@Override
