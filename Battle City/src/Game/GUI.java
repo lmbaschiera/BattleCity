@@ -14,7 +14,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
 
-public class gui extends JFrame implements InterfazGui{
+public class GUI extends JFrame implements InterfazGui{
 	private JPanel panel,panelObstaculos,panelFondo;
 	private EntidadGrafica[] jugadorGrafico;
 	private EntidadGrafica[] enemigoGrafico;
@@ -26,7 +26,7 @@ public class gui extends JFrame implements InterfazGui{
 	private boolean creado;
 	
 	
-	public gui(Juego juego){
+	public GUI(Juego juego){
 		super();
 		this.juego=juego;
 		

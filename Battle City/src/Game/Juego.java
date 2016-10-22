@@ -19,7 +19,7 @@ public class Juego{
 		puntaje=0;
 		enemigos= new Enemigo[15];
 		player=new Jugador(this,0,0);
-		gui=new gui(this);
+		gui=new GUI(this);
 		mapa=new Mapa(13);
 		mapa.armarMapa("mapa1.txt");
 		gui.levantarMapa(mapa);
