@@ -6,8 +6,9 @@ import Game.EntidadGrafica;
 import Game.Juego;
 
 public class Enemigo extends Tanque implements Runnable{
-	boolean execute;
-	boolean choque;
+	protected boolean execute;
+	protected boolean choque;
+	protected int lado;
 	public Enemigo(float x, float y, Juego juego){
 		
 		level= new NivelPoder();
@@ -15,6 +16,7 @@ public class Enemigo extends Tanque implements Runnable{
 		posX= x;
 		posY= y;
 		this.grafico = new EntidadGrafica("/imagenes/enemy1-37.png",32,32);
+		this.lado=this.grafico.getH();
 		super.juego=juego;
 	}
 
@@ -22,7 +24,6 @@ public class Enemigo extends Tanque implements Runnable{
 		switch(dir){
 		case 1 :
 				if(juego.TanquePuedeEstarAca(posX,posY-(2*level.getVelocidadM())) && juego.TanquePuedeEstarAca(posX+32, posY-(2*level.getVelocidadM()))){
-					System.out.println(posX+"<- asd ->"+(posY));
 					posY-=2*level.getVelocidadM();
 					choque = false;
 				}else
@@ -30,7 +31,6 @@ public class Enemigo extends Tanque implements Runnable{
 			break;
 		case 3 :
 			if(juego.TanquePuedeEstarAca(posX,(posY+32)+(2*level.getVelocidadM()))&& juego.TanquePuedeEstarAca(posX+32, posY+32+(2*level.getVelocidadM()))){
-				System.out.println(posX+"<- asd ->"+(posY));
 				posY+=2*level.getVelocidadM();
 				choque = false;
 			}else
@@ -38,7 +38,6 @@ public class Enemigo extends Tanque implements Runnable{
 			break;
 		case 2 :
 			if(juego.TanquePuedeEstarAca(posX+32+(2*level.getVelocidadM()),posY) && juego.TanquePuedeEstarAca(posX+32+(2*level.getVelocidadM()), posY+32)){	
-				System.out.println((posX)+"<- asd ->"+posY);
 				posX+=2*level.getVelocidadM();
 				choque = false;
 			}
@@ -47,7 +46,6 @@ public class Enemigo extends Tanque implements Runnable{
 			break;
 		case 0 :
 			if(juego.TanquePuedeEstarAca(posX-(2*level.getVelocidadM()),posY)&& juego.TanquePuedeEstarAca(posX-(2*level.getVelocidadM()), posY+32)){
-				System.out.println((posX)+"<- asd ->"+(posY));
 				posX-=2*level.getVelocidadM();
 				choque = false;
 			}
@@ -65,7 +63,9 @@ public class Enemigo extends Tanque implements Runnable{
 	public void terminate(){
 		this.execute = false;
 	}
-	
+	public int getLado(){
+		return this.lado;
+	}
 	public void run(){
 		this.execute=true;
 		Random r = new Random();

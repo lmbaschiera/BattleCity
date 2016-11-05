@@ -28,25 +28,21 @@ public class Jugador extends Tanque {
 			switch(k){
 			case KeyEvent.VK_UP :
 					if(juego.TanquePuedeEstarAca(posX,posY-(2*level.getVelocidadM())) && juego.TanquePuedeEstarAca(posX+32, posY-(2*level.getVelocidadM()))){
-						System.out.println(posX+"<- asd ->"+(posY));
 						posY-=2*level.getVelocidadM();
 					}
 				break;
 			case KeyEvent.VK_DOWN :
 				if(juego.TanquePuedeEstarAca(posX,(posY+32)+(2*level.getVelocidadM()))&& juego.TanquePuedeEstarAca(posX+32, posY+32+(2*level.getVelocidadM()))){
-					System.out.println(posX+"<- asd ->"+(posY));
 					posY+=2*level.getVelocidadM();
 				}
 				break;
 			case KeyEvent.VK_RIGHT :
 				if(juego.TanquePuedeEstarAca(posX+32+(2*level.getVelocidadM()),posY) && juego.TanquePuedeEstarAca(posX+32+(2*level.getVelocidadM()), posY+32)){	
-					System.out.println((posX)+"<- asd ->"+posY);
 					posX+=2*level.getVelocidadM();
 				}
 				break;
 			case KeyEvent.VK_LEFT :
 				if(juego.TanquePuedeEstarAca(posX-(2*level.getVelocidadM()),posY)&& juego.TanquePuedeEstarAca(posX-(2*level.getVelocidadM()), posY+32)){
-					System.out.println((posX)+"<- asd ->"+(posY));
 					posX-=2*level.getVelocidadM();
 				}
 				break;
@@ -60,23 +56,7 @@ public class Jugador extends Tanque {
 	}
 	public void efectuarDisparo(){
 		if(disparosDisponibles>0){
-			
-			int corrimiento_x=0,corrimiento_y=0;
-			switch(lastMovement){
-			case KeyEvent.VK_UP :
-				corrimiento_y=-1;
-				break;
-			case KeyEvent.VK_DOWN :
-				corrimiento_y=1;
-				break;
-			case KeyEvent.VK_RIGHT :
-				corrimiento_x=1;
-				break;
-			case KeyEvent.VK_LEFT :
-				corrimiento_x=-1;
-				break;
-			}
-			Disparo disparo=new Disparo(this.juego,gui,this,level.VelocidadD,level.getdestruyeMetal(),(int)posX+13,(int)posY+13,corrimiento_x,corrimiento_y);
+			Disparo disparo=new Disparo(this.juego,gui,this,level.VelocidadD,level.getdestruyeMetal(),(int)posX+13,(int)posY+13,lastMovement);
 			disparosDisponibles--;
 			gui.levantarEntidad(disparo);
 			juego.disparar(disparo);
