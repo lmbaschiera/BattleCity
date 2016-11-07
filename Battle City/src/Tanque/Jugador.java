@@ -27,22 +27,22 @@ public class Jugador extends Tanque {
 	public void mover(int k){
 			switch(k){
 			case KeyEvent.VK_UP :
-					if(juego.TanquePuedeEstarAca(posX,posY-(2*level.getVelocidadM())) && juego.TanquePuedeEstarAca(posX+32, posY-(2*level.getVelocidadM()))){
+					if(juego.TanquePuedeEstarAca(posX,posY-(2*level.getVelocidadM()),this) && juego.TanquePuedeEstarAca(posX+32, posY-(2*level.getVelocidadM()),this)){
 						posY-=2*level.getVelocidadM();
 					}
 				break;
 			case KeyEvent.VK_DOWN :
-				if(juego.TanquePuedeEstarAca(posX,(posY+32)+(2*level.getVelocidadM()))&& juego.TanquePuedeEstarAca(posX+32, posY+32+(2*level.getVelocidadM()))){
+				if(juego.TanquePuedeEstarAca(posX,(posY+32)+(2*level.getVelocidadM()),this)&& juego.TanquePuedeEstarAca(posX+32, posY+32+(2*level.getVelocidadM()),this)){
 					posY+=2*level.getVelocidadM();
 				}
 				break;
 			case KeyEvent.VK_RIGHT :
-				if(juego.TanquePuedeEstarAca(posX+32+(2*level.getVelocidadM()),posY) && juego.TanquePuedeEstarAca(posX+32+(2*level.getVelocidadM()), posY+32)){	
+				if(juego.TanquePuedeEstarAca(posX+32+(2*level.getVelocidadM()),posY,this) && juego.TanquePuedeEstarAca(posX+32+(2*level.getVelocidadM()), posY+32,this)){	
 					posX+=2*level.getVelocidadM();
 				}
 				break;
 			case KeyEvent.VK_LEFT :
-				if(juego.TanquePuedeEstarAca(posX-(2*level.getVelocidadM()),posY)&& juego.TanquePuedeEstarAca(posX-(2*level.getVelocidadM()), posY+32)){
+				if(juego.TanquePuedeEstarAca(posX-(2*level.getVelocidadM()),posY,this)&& juego.TanquePuedeEstarAca(posX-(2*level.getVelocidadM()), posY+32,this)){
 					posX-=2*level.getVelocidadM();
 				}
 				break;

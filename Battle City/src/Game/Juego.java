@@ -138,7 +138,7 @@ public class Juego{
 		else
 			puede=true;
 		Iterator<Tanque> it=tanques.iterator();
-		
+		it.next();
 		while(it.hasNext()&& puede){
 			Tanque ene=it.next();
 			switch(direccion){
