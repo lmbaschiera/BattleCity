@@ -24,6 +24,13 @@ public abstract class Nivel {
 	public abstract boolean getdestruyeMetal();
 	public abstract Nivel getSiguiente();
 	public String getImg(int i){
-		return img[i];
+		return img[i-37];
+	}
+	public int reducirVida(){
+		this.GolpesQueResiste--;
+		return GolpesQueResiste;
+	}
+	public int getPuntaje(){
+		return 0;
 	}
 }

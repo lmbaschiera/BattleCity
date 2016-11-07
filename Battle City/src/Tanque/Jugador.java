@@ -49,17 +49,18 @@ public class Jugador extends Tanque {
 			}
 			if(lastMovement!=k){
 				lastMovement=k;
-				getGrafico().cambiarImagen(getNivel().getImg(k-37));
+				getGrafico().cambiarImagen(getNivel().getImg(k));
 			}
 			gui.moverEntidad(this.getGrafico(), (int)posX, (int)posY);
 			
 	}
 	public void efectuarDisparo(){
 		if(disparosDisponibles>0){
-			Disparo disparo=new Disparo(this.juego,gui,this,level.VelocidadD,level.getdestruyeMetal(),(int)posX+13,(int)posY+13,lastMovement);
+			Disparo disparo=new DisparoAliado(this.juego,gui,this,level.VelocidadD,level.getdestruyeMetal(),(int)posX+13,(int)posY+13,lastMovement);
 			disparosDisponibles--;
 			gui.levantarEntidad(disparo);
-			juego.disparar(disparo);
+			Thread t=new Thread(disparo);
+			t.start();
 		}
 	}
 	public float getX(){
@@ -67,10 +68,6 @@ public class Jugador extends Tanque {
 	}
 	public float getY(){
 		return posY;
-	}
-	public boolean PuedoMoverme(int k){
-		
-		return true;
 	}
 	public Nivel subirNivel(){
 		level=level.getSiguiente();
@@ -86,9 +83,21 @@ public class Jugador extends Tanque {
 	public void serAfectado(PowerUp p){
 		//p.afectar(this);
 	}
-	public void reducirVida(){}
-	public void serAfectado(Disparo d){
-		//d.afectar(this);
+	public void reducirVida(){
+		if(level.reducirVida()==0){
+			juego.gameOver();
+		}
+		
+		float[] posIniciales=juego.getPosXInicialTanque();
+		posX=posIniciales[0];
+		posY=posIniciales[1];
+		level=new Nivel1();
+		gui.moverEntidad(this.getGrafico(), (int)posX, (int)posY);
+	}
+	
+	public void serAfectado(Disparo d) {
+		System.out.println("me han hitea2");
+		this.reducirVida();
 	}
 	
 }

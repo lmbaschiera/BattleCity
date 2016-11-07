@@ -20,4 +20,7 @@ public class NivelRapido extends Nivel{
 	public boolean getdestruyeMetal(){
 		return false;
 	}
+	public int getPuntaje(){
+		return 200;
+	}
 }

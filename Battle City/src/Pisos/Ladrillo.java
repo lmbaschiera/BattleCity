@@ -47,7 +47,7 @@ public class Ladrillo extends Celda{
 
 	@Override
 	public void serAfectado(Disparo d) {
-		d.afectar(this);
+		d.afectarCelda(this);
 		
 	}
 

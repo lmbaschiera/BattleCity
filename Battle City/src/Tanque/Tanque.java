@@ -21,4 +21,11 @@ public abstract class Tanque extends GameObject {
 	public void disminuirDisparosDisponibles(){
 		disparosDisponibles--;
 	}
+	public int getLado(){
+		return this.grafico.getH();
+	}
+	public int getLastMovement(){
+		return this.lastMovement;
+	}
+	public abstract void  serAfectado(Disparo d);
 }

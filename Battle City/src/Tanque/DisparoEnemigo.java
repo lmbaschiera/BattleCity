@@ -3,8 +3,8 @@ package Tanque;
 import Game.InterfazGui;
 import Game.Juego;
 
-public class DisparoAliado extends Disparo {
-	public DisparoAliado(Juego juego,InterfazGui gui, Tanque tanque,int velocidad, boolean romperMetal, float x, float y,int lastMovement){
+public class DisparoEnemigo extends Disparo {
+	public DisparoEnemigo(Juego juego,InterfazGui gui, Tanque tanque,int velocidad, boolean romperMetal, float x, float y,int lastMovement){
 		super(juego,gui,tanque,velocidad,romperMetal,x,y,lastMovement);
 	}
 	
@@ -16,7 +16,7 @@ public class DisparoAliado extends Disparo {
 					posX+=corrimiento_x*velocidad;
 					posY+=corrimiento_y*velocidad;
 					gui.moverEntidad(this.grafico, (int)posX, (int)posY);
-					Thread.sleep(12);
+					Thread.sleep(10);
 				}
 				else{
 					execute=false;
@@ -28,5 +28,5 @@ public class DisparoAliado extends Disparo {
 			gui.eliminarEntidad(grafico);
 	}
 		catch(InterruptedException e1){}
-	}
+}
 }

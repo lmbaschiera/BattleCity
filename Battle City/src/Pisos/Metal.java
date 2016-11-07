@@ -28,7 +28,7 @@ public class Metal extends Celda {
 	@Override
 	public void serAfectado(Disparo d) {
 		if (d.canI()){
-			d.afectar(this);
+			d.afectarCelda(this);
 		}
 	}
 

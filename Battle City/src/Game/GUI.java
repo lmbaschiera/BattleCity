@@ -68,8 +68,7 @@ public class GUI extends JFrame implements InterfazGui{
 			@Override
 			
 			public void keyPressed(KeyEvent arg0) {
-				JLabel aux=null;
-				//arg0.getKeyChar()=='t' || arg0.getKeyChar()=='g' || 
+				 
 				if ((arg0.getKeyCode()>36 && arg0.getKeyCode()<41)){
 						player.mover(arg0.getKeyCode());
 				}
@@ -85,8 +84,6 @@ public class GUI extends JFrame implements InterfazGui{
 						}
 						else{
 							creado=false;
-						//	juego.eliminarMalo();
-							System.out.println(juego.getPuntaje());
 							
 							panelObstaculos.revalidate();
 							panelObstaculos.repaint();
@@ -103,7 +100,6 @@ public class GUI extends JFrame implements InterfazGui{
 					panelObstaculos.repaint();
 					break;
 					case KeyEvent.VK_SPACE:
-						System.out.println("dispare ");	
 						player.efectuarDisparo();
 						break;
 					}
