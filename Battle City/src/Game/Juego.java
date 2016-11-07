@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Random;
 
 import PU.*;
 import Pisos.*;
@@ -50,9 +51,9 @@ public class Juego{
 		if((this.activadorPU%4)==0){
 			this.crearPU();
 		}
-		for(int i=tanques.size();i<4;i++){
+		/*for(int i=tanques.size();i<4;i++){
 			this.crearMalo();
-		}
+		}*/
 	}
 	public Jugador getJugador(){
 		return player;
@@ -173,6 +174,59 @@ public class Juego{
 	}
 	public void gameOver(){}
 	public void crearPU(){
+		Random r= new Random();
+		int celdaX,celdaY,pw;
+		PowerUp p = null;
+		celdaX = 0;
+		celdaY= 0;
+		boolean encontre = false;
+	
+	    pw = r.nextInt(5);
+	    switch (pw){
+	    case 0:
+	    	p = new Casco(this);
+	    	break;
+	    case 1:
+	    	p = new Estrella(this);
+	    	break;
+	    case 2:
+	    	p = new Frenar(this);
+	    	break;
+	    case 3:
+	    	p = new Granada(this);
+	    	break;
+	    case 4:
+	    	p = new Pala(this);
+	    	break;
+	    case 5:
+	    	p = new TanquePU(this);
+	    	break;
+	    
+	    }
+	    
+	    while (!encontre){
+	    	celdaX = r.nextInt(12);
+	    	celdaY = r.nextInt(12);
+	    	encontre = (this.mapa.getCelda(celdaX, celdaY).getGObject() == null);
+	    }
+	    
+	    this.mapa.getCelda(celdaX, celdaY).setGObject(p);
+	    System.out.println("El powerUp esta en la celda"+celdaX+"  "+celdaY);
 		
+	}
+	public int cantEnemigosON(){
+		return tanques.size()-1;
+	}
+	public void jugadorActivaPw(float x, float y) {
+		Celda c = this.mapa.getCelda((int)x/40,(int) y/40);
+		if (c != null){
+			if (c.getGObject()!=null){
+				this.player.serAfectado((PowerUp) c.getGObject());
+				c.setGObject(null);
+			}
+		}
+	}
+	public Enemigo getEnemigo(int i){
+		return (Enemigo)tanques.get(i);
 	}
 }

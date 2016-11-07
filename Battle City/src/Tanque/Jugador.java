@@ -7,8 +7,8 @@ import Game.InterfazGui;
 import Game.Juego;
 import PU.PowerUp;
 public class Jugador extends Tanque {
-	private boolean PuedoMoverme;
-	
+	protected int vida;
+	protected boolean invulnerable;
 	public Jugador(Juego juego,float x, float y ){
 		this.juego=juego;
 		this.grafico=new EntidadGrafica("/imagenes/lvl4-37.png", 32,32);
@@ -16,7 +16,8 @@ public class Jugador extends Tanque {
 		disparosDisponibles=level.getDisparosSimultaneos();
 		posX= x;
 		posY= y;
-		
+		this.vida=3;
+		this.invulnerable=false;
 	}
 	public void setGui(InterfazGui gui){
 		this.gui=gui;
@@ -47,12 +48,20 @@ public class Jugador extends Tanque {
 				}
 				break;
 			}
+			this.juego.jugadorActivaPw(posX,posY);
 			if(lastMovement!=k){
 				lastMovement=k;
 				getGrafico().cambiarImagen(getNivel().getImg(k));
 			}
 			gui.moverEntidad(this.getGrafico(), (int)posX, (int)posY);
 			
+	}
+	public void setInvulnerable(){
+		if(!invulnerable)
+			this.invulnerable=true;
+		else{
+			this.invulnerable=false;
+		}
 	}
 	public void efectuarDisparo(){
 		if(disparosDisponibles>0){
@@ -71,33 +80,38 @@ public class Jugador extends Tanque {
 	}
 	public Nivel subirNivel(){
 		level=level.getSiguiente();
-		this.getGrafico().cambiarImagen(this.getNivel().getImg(this.lastMovement-37));
+		this.getGrafico().cambiarImagen(this.getNivel().getImg(this.lastMovement));
 		disparosDisponibles=level.getDisparosSimultaneos();
 		golpesQueResiste=level.GolpesQueResiste;
 		return level;
 	}
-	public boolean a(){
-		return PuedoMoverme;
-	}
 	
 	public void serAfectado(PowerUp p){
-		//p.afectar(this);
+		p.afectar(this);
 	}
-	public void reducirVida(){
-		if(level.reducirVida()==0){
-			juego.gameOver();
+	private void meHitearon(){
+		if(level.meGolpearon()==0){
+			if(this.reducirVida()!=0){
+				float[] posIniciales=juego.getPosXInicialTanque();
+				posX=posIniciales[0];
+				posY=posIniciales[1];
+				level=new Nivel1();
+				gui.moverEntidad(this.getGrafico(), (int)posX, (int)posY);
+			}
+			else juego.gameOver();
 		}
-		
-		float[] posIniciales=juego.getPosXInicialTanque();
-		posX=posIniciales[0];
-		posY=posIniciales[1];
-		level=new Nivel1();
-		gui.moverEntidad(this.getGrafico(), (int)posX, (int)posY);
 	}
-	
+	private int reducirVida(){
+		this.vida--;
+		return this.vida;
+	}
+	public void aumentarVida(){
+		this.vida++;
+	}
 	public void serAfectado(Disparo d) {
 		System.out.println("me han hitea2");
-		this.reducirVida();
+		if(!invulnerable)
+			this.meHitearon();
 	}
 	
 }

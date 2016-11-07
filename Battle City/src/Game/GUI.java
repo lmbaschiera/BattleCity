@@ -2,6 +2,8 @@ package Game;
 
 import javax.swing.*;
 
+import PU.Frenar;
+import PU.PowerUp;
 import Pisos.Agua;
 import Pisos.Arbol;
 import Pisos.Celda;
@@ -73,7 +75,17 @@ public class GUI extends JFrame implements InterfazGui{
 						player.mover(arg0.getKeyCode());
 				}
 				else{
+					
+						
+					
 					switch(arg0.getKeyChar()){
+					
+
+					case 'u':
+						PowerUp p = new Frenar(juego);
+						p.afectar(player);
+						break;
+					
 					case 't':
 						if(!creado){
 							

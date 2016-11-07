@@ -36,4 +36,7 @@ public abstract class Celda extends GameObject {
 	public abstract boolean PuedePasarDisparo();
 	public abstract void serAfectado(Disparo d);
 	public abstract void vida(boolean romperMetal);
+	public GameObject getGObject(){
+		return this.obj;
+	}
 }
