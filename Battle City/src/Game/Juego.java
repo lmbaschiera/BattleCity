@@ -21,27 +21,30 @@ public class Juego{
 	private static int h=40;
 	private static int w=40;
 	private int activadorPU;
+	private ControladorEnemigosON CEON;
 	public Juego(){
 		puntaje=0;
 		this.activadorPU=0;
 		tanques= new LinkedList();
-		player=new Jugador(this,0,0);
+		player=new Jugador(this,this.getPosXInicialTanque()[0],this.getPosXInicialTanque()[1]);
 		tanques.addLast(player);
 		gui=new GUI(this);
 		mapa=new Mapa(13);
 		mapa.armarMapa("mapa1.txt");
 		gui.levantarMapa(mapa);
 		mapa.setGui(gui);
+		CEON=new ControladorEnemigosON(this);
+		CEON.run();
 	}
 	
 	
-	public Enemigo crearMalo(){
-		Enemigo e=new Enemigo(0,0,this,gui,(byte)0);
+	public void crearMalo(){
+		Random rnd=new Random();
+		Enemigo e=new Enemigo(rnd.nextInt(14)+32,0,this,gui,(byte)rnd.nextInt(4));
 		gui.levantarEntidad(e);
 		tanques.add(e);
 		Thread t1 = new Thread(e);
 		t1.start();
-		return e;
 	}
 	public void eliminarMalo(Enemigo e){
 		this.puntaje+=e.getPuntaje();
@@ -51,9 +54,6 @@ public class Juego{
 		if((this.activadorPU%4)==0){
 			this.crearPU();
 		}
-		/*for(int i=tanques.size();i<4;i++){
-			this.crearMalo();
-		}*/
 	}
 	public Jugador getJugador(){
 		return player;
@@ -61,8 +61,6 @@ public class Juego{
 	public InterfazGui getGui(){
 		return gui;
 	}
-	
-	
 	public boolean TanquePuedeEstarAca(float x, float y, Tanque t){
 		if(y<0 || x<0 || y>484+32|| x>484+32){
 			return false;
@@ -172,7 +170,9 @@ public class Juego{
 		float[] toRet={164,480};
 		return toRet;
 	}
-	public void gameOver(){}
+	public void gameOver(){
+		CEON.terminate();
+	}
 	public void crearPU(){
 		Random r= new Random();
 		int celdaX,celdaY,pw;

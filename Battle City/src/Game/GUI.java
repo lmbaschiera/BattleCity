@@ -86,31 +86,11 @@ public class GUI extends JFrame implements InterfazGui{
 						p.afectar(player);
 						break;
 					
-					case 't':
-						if(!creado){
-							
-							creado=true;
-							juego.crearMalo();
-							
-							
-						}
-						else{
-							creado=false;
-							
-							panelObstaculos.revalidate();
-							panelObstaculos.repaint();
-						}
-					break;
 					case'p':
 						player.subirNivel().getVelocidadM();
 						
 						break;
-					case'g':panelObstaculos.remove(mapa.getCelda(11,2).getEntidadGrafica().getGrafico());
-					mapa.setCelda(null,11,2);
 					
-					panelObstaculos.revalidate();
-					panelObstaculos.repaint();
-					break;
 					case KeyEvent.VK_SPACE:
 						player.efectuarDisparo();
 						break;

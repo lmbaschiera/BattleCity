@@ -26,10 +26,6 @@ public abstract class Nivel {
 	public String getImg(int i){
 		return img[i-37];
 	}
-	public int meGolpearon(){
-		this.GolpesQueResiste--;
-		return GolpesQueResiste;
-	}
 	public int getPuntaje(){
 		return 0;
 	}
