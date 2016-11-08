@@ -5,8 +5,8 @@ public class test {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		@SuppressWarnings("unused")
-		Juego j=new Juego();
-		
+		preGUI p=new preGUI();
+	//	Juego j=new Juego();
 	}
 
 }

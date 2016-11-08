@@ -85,6 +85,6 @@ public class Mapa implements InterfazMapa {
 		Celda cel=new Tierra(this,(int)c.getX(),(int)c.getY());
 		this.map[(int)c.getX()][(int)c.getY()]=cel;
 		this.setCelda(cel,(int)cel.getPosX(),(int)cel.getPosY());	
-		gui.levantarEntidad(cel);
+	//	gui.levantarEntidad(cel);
 	}
 }
