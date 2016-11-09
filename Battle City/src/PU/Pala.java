@@ -2,7 +2,6 @@ package PU;
 
 import Game.EntidadGrafica;
 import Game.Juego;
-import Game.Mapa;
 import Pisos.Ladrillo;
 import Pisos.Metal;
 import Tanque.Jugador;
@@ -35,7 +34,6 @@ public class Pala extends PowerUp{
 			try {
 				Thread.sleep(100);
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}}
 		for(int i=5;i<=7;i++){

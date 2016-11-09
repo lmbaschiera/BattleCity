@@ -14,7 +14,6 @@ public class Granada extends PowerUp{
 	
 	@Override
 	public void run() {
-		// TODO Auto-generated method stub
 		
 	}
 

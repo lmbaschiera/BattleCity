@@ -3,7 +3,6 @@ package Pisos;
 import Game.EntidadGrafica;
 import Game.InterfazMapa;
 import Game.Juego;
-import Game.Mapa;
 import Tanque.Disparo;
 
 public class Agua extends Celda{
@@ -17,7 +16,6 @@ public class Agua extends Celda{
 
 	@Override
 	public boolean PuedePasarTanque() {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
@@ -25,7 +23,6 @@ public class Agua extends Celda{
 	
 	@Override
 	public boolean PuedePasarDisparo() {
-		// TODO Auto-generated method stub
 		return true;
 	}
 

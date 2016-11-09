@@ -4,7 +4,6 @@ import Game.EntidadGrafica;
 import Game.GameObject;
 import Game.InterfazMapa;
 import Game.Juego;
-import Game.Mapa;
 import PU.PowerUp;
 import Tanque.Disparo;
 

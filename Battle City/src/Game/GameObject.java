@@ -5,7 +5,6 @@ public abstract class GameObject {
 	protected EntidadGrafica grafico;
 	protected InterfazGui gui;
 	protected Juego juego;
-	// public abstract void afectar();
 	public EntidadGrafica getGrafico(){
 		return grafico;
 	}

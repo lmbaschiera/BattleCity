@@ -1,8 +1,6 @@
 package Tanque;
 
-import Game.EntidadGrafica;
 import Game.GameObject;
-import Game.Juego;
 
 public abstract class Tanque extends GameObject {
 	

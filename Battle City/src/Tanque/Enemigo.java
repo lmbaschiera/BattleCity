@@ -4,7 +4,6 @@ import java.awt.event.KeyEvent;
 import java.util.Random;
 
 import Game.EntidadGrafica;
-import Game.GUI;
 import Game.InterfazGui;
 import Game.Juego;
 
@@ -84,12 +83,13 @@ public class Enemigo extends Tanque implements Runnable{
 		this.execute=true;
 		Random r = new Random();
 		int direccion;
-		direccion = r.nextInt(4)+37;
+		direccion = 40;
 	
 		while (execute){
 			if (choque){
-				direccion = r.nextInt(4)+37;
 				mover(direccion);
+				direccion = (r.nextInt(97)%4)+37;
+				
 				choque = false;}
 		
 			else
@@ -99,7 +99,6 @@ public class Enemigo extends Tanque implements Runnable{
 				
 				Thread.sleep(50);
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}

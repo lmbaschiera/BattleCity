@@ -84,12 +84,8 @@ public class Juego{
 		} 
 		boolean puede;
 		puede=mapa.getCelda((int)(x/h),(int) (y/w)).PuedePasarTanque();
-		if(puede){
-			Iterator<Tanque>it=tanques.iterator();
-			while(it.hasNext() && puede){
-				Tanque tanque=it.next();
-				if(tanque!=t){
-					switch(t.getLastMovement()){
+		/**
+		 switch(t.getLastMovement()){
 					case KeyEvent.VK_UP :		
 						if(tanque.getPosY()< y)
 						puede=!((tanque.getPosX()<=x && tanque.getPosX()+tanque.getLado()>=x) && (tanque.getPosY()+tanque.getLado()>= y));
@@ -105,6 +101,27 @@ public class Juego{
 					case KeyEvent.VK_LEFT :
 						if(tanque.getPosX()< x)
 						puede=!((tanque.getPosY()<=y && tanque.getPosY()+tanque.getLado()>=y) && ((tanque.getPosX()+tanque.getLado())>= x));
+						break;
+					}
+		  **/
+		 
+		if(puede){
+			Iterator<Tanque>it=tanques.iterator();
+			while(it.hasNext() && puede){
+				Tanque tanque=it.next();
+				if(tanque!=t){
+					switch(t.getLastMovement()){
+					case KeyEvent.VK_UP :		
+						puede=!((tanque.getPosX()<=x && tanque.getPosX()+tanque.getLado()>=x) && (tanque.getPosY()<=y && tanque.getPosY()+tanque.getLado()>= y));
+						break;
+					case KeyEvent.VK_DOWN :
+							puede=!((tanque.getPosX()<=x && tanque.getPosX()+tanque.getLado()>=x) && (tanque.getPosY()<=y+10 && tanque.getPosY()+tanque.getLado()>= y+10));
+						break;
+					case KeyEvent.VK_RIGHT :
+						puede=!((tanque.getPosY()<=y && tanque.getPosY()+tanque.getLado()>=y) && (tanque.getPosX()<=x+10 &&tanque.getPosX()+tanque.getLado()>=x+10));
+						break;
+					case KeyEvent.VK_LEFT :
+						puede=!((tanque.getPosY()<=y && tanque.getPosY()+tanque.getLado()>=y) && (tanque.getPosX()<=x && tanque.getPosX()+tanque.getLado()>= x));
 						break;
 					}
 				}
@@ -194,7 +211,7 @@ public class Juego{
 	//	T.terminate();
 		gui.setVisible(false);
 		gui.dispose();
-		postGUI p=new postGUI(puntaje);
+		new postGUI(puntaje);
 	}
 	public int getPuntaje() {
 		return puntaje;

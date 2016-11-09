@@ -1,6 +1,6 @@
 package Tanque;
 
-import Game.EntidadGrafica;
+
 
 public abstract class Nivel {
 	protected int GolpesQueResiste;

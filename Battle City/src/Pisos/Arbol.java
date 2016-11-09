@@ -3,10 +3,7 @@ package Pisos;
 import Game.EntidadGrafica;
 import Game.InterfazMapa;
 import Game.Juego;
-import Game.Mapa;
 import Tanque.Disparo;
-
-import javax.swing.JLabel;
 
 public class Arbol extends Celda{
 	public Arbol(InterfazMapa mapa,int x, int y){
