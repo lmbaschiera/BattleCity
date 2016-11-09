@@ -83,6 +83,7 @@ public class Jugador extends Tanque {
 		this.getGrafico().cambiarImagen(this.getNivel().getImg(this.lastMovement));
 		disparosDisponibles=level.getDisparosSimultaneos();
 		golpesQueResiste=level.getGolpesQueResiste();
+		juego.getGui().armarHits();
 		return level;
 	}
 	
@@ -114,10 +115,12 @@ public class Jugador extends Tanque {
 	}
 	private int reducirVida(){
 		this.vida--;
+		this.juego.getGui().armarVida();
 		return this.vida;
 	}
 	public void aumentarVida(){
 		this.vida++;
+		this.juego.getGui().armarVida();
 	}
 	public void serAfectado(Disparo d) {
 		if(!invulnerable){
