@@ -16,7 +16,7 @@ public class DisparoAliado extends Disparo {
 					posX+=(corrimiento_x*velocidad);
 					posY+=(corrimiento_y*velocidad);
 					gui.moverEntidad(this.grafico, (int)posX, (int)posY);
-					Thread.sleep(12);
+					Thread.sleep(10);
 				}
 				else{
 					execute=false;

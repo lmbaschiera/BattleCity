@@ -85,6 +85,7 @@ public class Enemigo extends Tanque implements Runnable{
 		Random r = new Random();
 		int direccion;
 		direccion = r.nextInt(4)+37;
+	
 		while (execute){
 			if (choque){
 				direccion = r.nextInt(4)+37;
@@ -95,7 +96,7 @@ public class Enemigo extends Tanque implements Runnable{
 				mover(direccion);
 			
 			try {
-				this.efectuarDisparo(direccion);
+				
 				Thread.sleep(50);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
@@ -104,9 +105,9 @@ public class Enemigo extends Tanque implements Runnable{
 		}
 		
 	}
-	private void efectuarDisparo(int lastMovement){
+	public void efectuarDisparo(){
 			if(disparosDisponibles>0){
-				Disparo disparo=new DisparoEnemigo(this.juego,gui,this,level.VelocidadD,level.getdestruyeMetal(),(int)posX+13,(int)posY+13,lastMovement);
+				Disparo disparo=new DisparoEnemigo(this.juego,gui,this,level.VelocidadD,level.getdestruyeMetal(),(int)posX+13,(int)posY+13,this.lastMovement);
 				disparosDisponibles--;
 				gui.levantarEntidad(disparo);
 				Thread t=new Thread(disparo);

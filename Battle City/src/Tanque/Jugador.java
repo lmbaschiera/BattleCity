@@ -99,10 +99,10 @@ public class Jugador extends Tanque {
 	private void meHitearon(){
 		--golpesQueResiste;
 		if(golpesQueResiste==0){
-			if(this.reducirVida()!=0){
-				resetearJugador();
+			resetearJugador();
+			if(this.reducirVida()==0){
+				 juego.gameOver();
 			}
-			else juego.gameOver();
 		}
 	}
 	private int reducirVida(){

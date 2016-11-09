@@ -22,11 +22,15 @@ public class Juego{
 	private static int w=40;
 	private int activadorPU;
 	private ControladorEnemigosON CEON;
+	private DisparadorEnemigos DE;
 	public Juego(){
 		preGUI p=new preGUI();
-		boolean a;
-		while (a=!p.empiezaJuego()){
-			System.out.println(a);
+		try {
+			while (!p.empiezaJuego()){
+				Thread.sleep(500);
+			}
+		} catch (InterruptedException e) {
+			e.printStackTrace();
 		}
 		p.setVisible(false);
 		p.dispose();
@@ -41,8 +45,9 @@ public class Juego{
 		gui.levantarMapa(mapa);
 		mapa.setGui(gui);
 		CEON=new ControladorEnemigosON(this);
-		CEON.run();
-
+		CEON.start();
+		DE=new DisparadorEnemigos(this);
+		DE.start();
 	}
 	
 	
@@ -87,11 +92,11 @@ public class Juego{
 						break;
 					case KeyEvent.VK_DOWN :
 						if(tanque.getPosY()> y)
-							puede=!((tanque.getPosX()<=x && tanque.getPosX()+tanque.getLado()>=x) && (tanque.getPosY()<= (y+7)));
+							puede=!((tanque.getPosX()<=x && tanque.getPosX()+tanque.getLado()>=x) && (tanque.getPosY()<= (y+10)));
 						break;
 					case KeyEvent.VK_RIGHT :
 						if(tanque.getPosX()> x)
-						puede=!((tanque.getPosY()<=y && tanque.getPosY()+tanque.getLado()>=y) && (tanque.getPosX()<=x+7));
+						puede=!((tanque.getPosY()<=y && tanque.getPosY()+tanque.getLado()>=y) && (tanque.getPosX()<=x+10));
 						break;
 					case KeyEvent.VK_LEFT :
 						if(tanque.getPosX()< x)
