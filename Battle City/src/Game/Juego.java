@@ -115,10 +115,10 @@ public class Juego{
 						puede=!((tanque.getPosX()<=x && tanque.getPosX()+tanque.getLado()>=x) && (tanque.getPosY()<=y && tanque.getPosY()+tanque.getLado()>= y));
 						break;
 					case KeyEvent.VK_DOWN :
-							puede=!((tanque.getPosX()<=x && tanque.getPosX()+tanque.getLado()>=x) && (tanque.getPosY()<=y && tanque.getPosY()<= (y+10)));
+							puede=!((tanque.getPosX()<=x && tanque.getPosX()+tanque.getLado()>=x) && (tanque.getPosY()<=y+10 && tanque.getPosY()+tanque.getLado()>= y+10));
 						break;
 					case KeyEvent.VK_RIGHT :
-						puede=!((tanque.getPosY()<=y && tanque.getPosY()+tanque.getLado()>=y) && (tanque.getPosX()<=x &&tanque.getPosX()<=x+10));
+						puede=!((tanque.getPosY()<=y && tanque.getPosY()+tanque.getLado()>=y) && (tanque.getPosX()<=x+10 &&tanque.getPosX()+tanque.getLado()>=x+10));
 						break;
 					case KeyEvent.VK_LEFT :
 						puede=!((tanque.getPosY()<=y && tanque.getPosY()+tanque.getLado()>=y) && (tanque.getPosX()<=x && tanque.getPosX()+tanque.getLado()>= x));
