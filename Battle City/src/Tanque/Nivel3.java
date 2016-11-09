@@ -1,5 +1,7 @@
 package Tanque;
 
+import java.util.Random;
+
 public class Nivel3 extends Nivel{
 	public Nivel3(){
 		this.DisparosSimultaneos=2;
@@ -19,5 +21,21 @@ public class Nivel3 extends Nivel{
 	}
 	public boolean getdestruyeMetal(){
 		return false;
+	}
+	public int getEnemigoRandom(){
+		Random rnd=new Random();
+		int  i=rnd.nextInt(10);
+		if(i<=3)
+			return 2;
+		else{
+			if(i<=6){
+				return 3;
+			}else{
+				if(i<=8)
+					return 0;
+				else
+					return 1;
+			}
+		}				
 	}
 }

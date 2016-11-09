@@ -29,4 +29,7 @@ public abstract class Nivel {
 	public int getPuntaje(){
 		return 0;
 	}
+	public int getEnemigoRandom(){
+		return 0;
+	}
 }

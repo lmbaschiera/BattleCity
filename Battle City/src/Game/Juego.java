@@ -56,7 +56,7 @@ public class Juego{
 	}
 	public void crearMalo(){
 		Random rnd=new Random();
-		Enemigo e=new Enemigo(rnd.nextInt(14)*32,0,this,gui,(byte)rnd.nextInt(4));
+		Enemigo e=new Enemigo(rnd.nextInt(14)*32,0,this,gui,(byte)player.getNivel().getEnemigoRandom());
 		gui.levantarEntidad(e);
 		tanques.add(e);
 		Thread t1 = new Thread(e);
@@ -245,5 +245,10 @@ public class Juego{
 	public Enemigo getEnemigo(int i){
 		return (Enemigo)tanques.get(i);
 	}
-	
+	public void frenarDisparador(){
+		this.DE.terminate();
+	}
+	public void activarDisparador(){
+		this.DE.start();
+	}
 }

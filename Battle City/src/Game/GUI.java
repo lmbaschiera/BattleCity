@@ -3,6 +3,7 @@ package Game;
 import javax.swing.*;
 
 import PU.Frenar;
+import PU.Pala;
 import PU.PowerUp;
 import Pisos.Agua;
 import Pisos.Arbol;
@@ -77,7 +78,7 @@ public class GUI extends JFrame implements InterfazGui{
 					
 
 					case 'u':
-						PowerUp p = new Frenar(juego, 0, 0);
+						PowerUp p = new Pala(juego, 0, 0);
 						p.afectar(player);
 						break;
 					

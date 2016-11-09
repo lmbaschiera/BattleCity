@@ -32,7 +32,6 @@ public class Casco extends PowerUp {
 	public void afectar(Jugador j) {
 		Thread t1 = new Thread(this);
 		t1.start();
-		System.out.println("POWER UP ACTIVADO");
 	}
 
 }

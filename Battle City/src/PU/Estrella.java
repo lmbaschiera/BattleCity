@@ -23,7 +23,6 @@ public class Estrella extends PowerUp{
 	@Override
 	public void afectar(Jugador j) {
 		j.subirNivel();
-		System.out.println("POWER UP ACTIVADO");
 	}
 
 }

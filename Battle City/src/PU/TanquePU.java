@@ -19,7 +19,6 @@ public class TanquePU extends PowerUp{
 
 	@Override
 	public void afectar(Jugador j) {
-		System.out.println("POWER UP ACTIVADO");
 		j.aumentarVida();
 	}
 

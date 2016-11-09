@@ -12,7 +12,7 @@ public class Jugador extends Tanque {
 	public Jugador(Juego juego,float x, float y ){
 		this.juego=juego;
 		this.grafico=new EntidadGrafica("/imagenes/lvl4-37.png", 32,32);
-		level= new Nivel4();
+		level= new Nivel1();
 		disparosDisponibles=level.getDisparosSimultaneos();
 		this.golpesQueResiste=level.getGolpesQueResiste();
 		posX= x;

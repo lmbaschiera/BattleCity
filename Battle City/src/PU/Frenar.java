@@ -19,7 +19,7 @@ public class Frenar extends PowerUp  {
 		int actual = 0;
 		for(int i = 1;i<=this.juego.cantEnemigosON();i++){
 			this.juego.getEnemigo(i).terminate();
-			
+			this.juego.frenarDisparador();
 		}
 		while (tiempo>actual){
 			actual+=100;
@@ -39,7 +39,6 @@ public class Frenar extends PowerUp  {
 	@Override
 	public void afectar(Jugador j) {
 		Thread t1 = new Thread(this);
-		System.out.println("POWER UP ACTIVADO");
 		t1.start();
 		
 	}

@@ -21,7 +21,7 @@ public class Granada extends PowerUp{
 	@Override
 	public void afectar(Jugador j) {
 		int i = 1;
-		while(i<this.juego.cantEnemigosON()){
+		while(i<=this.juego.cantEnemigosON()){
 			this.juego.eliminarMalo(this.juego.getEnemigo(i));
 		}
 			
