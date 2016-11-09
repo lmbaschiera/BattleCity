@@ -18,6 +18,7 @@ public class DisparadorEnemigos extends Thread {
 	public void run(){		
 		try {
 			sleep(1000);
+			
 			this.execute=true;
 			while(execute){
 				int i=1;
