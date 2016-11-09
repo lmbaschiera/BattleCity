@@ -17,8 +17,9 @@ public class GUI extends JFrame implements InterfazGui{
 	private InterfazMapa mapa;
 	private static final int h=40;
 	private static final int w=40;
-	
+	private Juego j;
 	public GUI(Juego juego){
+		this.j=juego;
 		player=juego.getJugador();
 		player.setGui(this);
 		
