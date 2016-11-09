@@ -5,6 +5,7 @@ import java.io.FileReader;
 import java.io.IOException;
 
 import Pisos.Agua;
+import Pisos.Aguila;
 import Pisos.Arbol;
 import Pisos.Celda;
 import Pisos.Ladrillo;
@@ -59,6 +60,10 @@ public class Mapa implements InterfazMapa {
 					case '4': 	
 						celda=new Metal(this,i,columna);
 						this.setCelda(celda,i,columna);	
+						break;
+					case '5':
+						celda=new Aguila(this, i, columna);
+						this.setCelda(celda, i, columna);
 						break;
 					}
 				}

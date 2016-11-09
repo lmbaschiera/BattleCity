@@ -1,11 +1,15 @@
 package PU;
 
+import Game.EntidadGrafica;
 import Game.Juego;
 import Tanque.Jugador;
 
 public class Granada extends PowerUp{
-	public Granada(Juego j){
+	public Granada(Juego j, int x, int y){
+		e=new EntidadGrafica("/imagenes/pu5.gif",32,32);
 		this.juego = j;
+		this.posX=x;
+		this.posY=y;
 	}
 	
 	@Override

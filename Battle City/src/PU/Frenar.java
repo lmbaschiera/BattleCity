@@ -1,12 +1,16 @@
 package PU;
 
+import Game.EntidadGrafica;
 import Game.Juego;
 import Tanque.Jugador;
 
 public class Frenar extends PowerUp  {
 
-	public Frenar(Juego ju){
-		this.juego=ju;
+	public Frenar(Juego j, int x, int y){
+		e=new EntidadGrafica("/imagenes/pu2.gif",32,32);
+		this.juego = j;
+		this.posX=x;
+		this.posY=y;
 	}
 	
 	public void run() {

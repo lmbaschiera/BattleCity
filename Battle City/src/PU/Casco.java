@@ -1,11 +1,15 @@
 package PU;
 
+import Game.EntidadGrafica;
 import Game.Juego;
 import Tanque.Jugador;
 
 public class Casco extends PowerUp {
-	public Casco(Juego j){
+	public Casco(Juego j, int x, int y){
+		e=new EntidadGrafica("/imagenes/pu1.gif",32,32);
 		this.juego = j;
+		this.posX=x;
+		this.posY=y;
 	}
 	
 	@Override

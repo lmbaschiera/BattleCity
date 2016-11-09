@@ -1,25 +1,18 @@
 package Pisos;
 
+import Game.EntidadGrafica;
 import Game.Mapa;
 import Tanque.Disparo;
 
 public class Aguila extends Celda {
 	public Aguila(Mapa mapa,int x, int y){
+		this.grafico=new EntidadGrafica("/imagenes/aguila.png", 40,40);
 		this.mapa=mapa;
 		this.posX=x;
 		this.posY=y;
 		this.vida=1;
-	}/*
-	@Override
-	public void afectar() {
-		//destruir
 	}
-
-	@Override
-	public String getImg() {
-		return "/imagenes/Aguila.png";
-	}*/
-
+	
 	@Override
 	public boolean PuedePasarTanque() {
 		return false;
@@ -32,11 +25,12 @@ public class Aguila extends Celda {
 
 	@Override
 	public void serAfectado(Disparo d) {
+		vida(d.canI());
 		
 	}
 
 	@Override
 	public void vida(boolean p) {
-		vida--;//terminar juego
+		vida--;
 	}
 }

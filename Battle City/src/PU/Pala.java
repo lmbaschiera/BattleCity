@@ -1,5 +1,6 @@
 package PU;
 
+import Game.EntidadGrafica;
 import Game.Juego;
 import Game.Mapa;
 import Pisos.Metal;
@@ -7,8 +8,11 @@ import Tanque.Jugador;
 
 public class Pala extends PowerUp{
 
-	public Pala(Juego juego) {
-		this.juego = juego;
+	public Pala(Juego j, int x, int y){
+		e=new EntidadGrafica("/imagenes/pu3.gif",32,32);
+		this.juego = j;
+		this.posX=x;
+		this.posY=y;
 	}
 
 	@Override

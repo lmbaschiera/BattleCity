@@ -195,35 +195,35 @@ public class Juego{
 		boolean encontre = false;
 	
 	    pw = r.nextInt(6);
-	    switch (pw){
-	    case 0:
-	    	p = new Casco(this);
-	    	break;
-	    case 1:
-	    	p = new Estrella(this);
-	    	break;
-	    case 2:
-	    	p = new Frenar(this);
-	    	break;
-	    case 3:
-	    	p = new Granada(this);
-	    	break;
-	    case 4:
-	    	p = new Pala(this);
-	    	break;
-	    case 5:
-	    	p = new TanquePU(this);
-	    	break;
-	    
-	    }
-	    
 	    while (!encontre){
 	    	celdaX = r.nextInt(14);
 	    	celdaY = r.nextInt(14);
 	    	encontre = (this.mapa.getCelda(celdaX, celdaY).getGObject() == null);
 	    }
+
+	    switch (pw){
+	    case 0:
+	    	p = new Casco(this, celdaX, celdaY);
+	    	break;
+	    case 1:
+	    	p = new Estrella(this, celdaX, celdaY);
+	    	break;
+	    case 2:
+	    	p = new Frenar(this, celdaX, celdaY);
+	    	break;
+	    case 3:
+	    	p = new Granada(this, celdaX, celdaY);
+	    	break;
+	    case 4:
+	    	p = new Pala(this, celdaX, celdaY);
+	    	break;
+	    case 5:
+	    	p = new TanquePU(this, celdaX, celdaY);
+	    	break;
 	    
+	    }
 	    this.mapa.getCelda(celdaX, celdaY).setGObject(p);
+	    gui.levantarEntidad(p);
 	    System.out.println("El powerUp esta en la celda"+celdaX+"  "+celdaY);
 		
 	}

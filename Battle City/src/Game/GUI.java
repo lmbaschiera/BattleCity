@@ -38,7 +38,6 @@ public class GUI extends JFrame implements InterfazGui{
 		
 		setSize(new Dimension(w*14, h*14)); // 1024 768
 		getContentPane().setLayout(null);
-		
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		panelFondo=new JPanel();
 		
@@ -78,7 +77,7 @@ public class GUI extends JFrame implements InterfazGui{
 					
 
 					case 'u':
-						PowerUp p = new Frenar(juego);
+						PowerUp p = new Frenar(juego, 0, 0);
 						p.afectar(player);
 						break;
 					

@@ -25,6 +25,7 @@ public class preGUI extends JFrame{
 		this.setComponentZOrder(option, 0);
 		this.setComponentZOrder(background, 1);
 		this.setVisible(true);
+		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		boolean empiezaJuego=false;
 		opt=true;
 		this.addKeyListener(new kAdapter());
@@ -40,7 +41,25 @@ public class preGUI extends JFrame{
 		return empiezaJuego;
 	}
 	private void showHowTo() {
-		
+		if (howto==null){
+			howto=new JLabel();
+			howto.setIcon(new ImageIcon(this.getClass().getResource("/imagenes/howtoscreen.gif")));
+			howto.setBounds(0, 0, 640, 560);
+			this.getContentPane().add(howto);
+			this.setComponentZOrder(howto, 0);
+		}
+		background.setVisible(false);
+		option.setVisible(false);
+		howto.setVisible(true);
+		repaint();
+		revalidate();
+	}
+	private void hideHowTo() {
+		if (howto!=null){
+			background.setVisible(true);
+			option.setVisible(true);
+			howto.setVisible(false);
+		}
 	}
 	private final class kAdapter extends KeyAdapter{
 		public void keyPressed(KeyEvent arg){
@@ -56,6 +75,8 @@ public class preGUI extends JFrame{
 			case KeyEvent.VK_ENTER :
 				ejecutar();
 				break;
+			case KeyEvent.VK_ESCAPE :
+				hideHowTo();
 			default : {};
 			}
 			if (opt)
