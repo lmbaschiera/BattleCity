@@ -40,7 +40,7 @@ public class Juego{
 		player=new Jugador(this,this.getPosXInicialTanque()[0],this.getPosXInicialTanque()[1]);
 		tanques.addLast(player);
 		gui=new GUI(this);
-		mapa=new Mapa(13);
+		mapa=new Mapa(13,this);
 		mapa.armarMapa("mapa1.txt");
 		gui.levantarMapa(mapa);
 		mapa.setGui(gui);
@@ -50,7 +50,10 @@ public class Juego{
 		DE.start();
 	}
 	
-	
+	public void aumentarPuntaje(int i){
+		this.puntaje+=i;
+		System.out.println("Puntaje aumento a = "+puntaje);
+	}
 	public void crearMalo(){
 		Random rnd=new Random();
 		Enemigo e=new Enemigo(rnd.nextInt(14)*32,0,this,gui,(byte)rnd.nextInt(4));
@@ -60,7 +63,8 @@ public class Juego{
 		t1.start();
 	}
 	public void eliminarMalo(Enemigo e){
-		this.puntaje+=e.getPuntaje();
+		aumentarPuntaje(e.getPuntaje());
+		gui.eliminarEntidad(e.getGrafico());
 		tanques.remove(e);
 		e.terminate();
 		this.activadorPU++;
@@ -185,6 +189,10 @@ public class Juego{
 	}
 	public void gameOver(){
 		CEON.terminate();
+		DE.terminate();
+		System.out.println("Felicitaciones! terminaste el juego con " +this.puntaje);
+		gui.setVisible(false);
+		gui.dispose();
 	}
 	public void crearPU(){
 		Random r= new Random();
@@ -192,15 +200,9 @@ public class Juego{
 		PowerUp p = null;
 		celdaX = 0;
 		celdaY= 0;
-		boolean encontre = false;
-	
 	    pw = r.nextInt(6);
-	    while (!encontre){
-	    	celdaX = r.nextInt(14);
-	    	celdaY = r.nextInt(14);
-	    	encontre = (this.mapa.getCelda(celdaX, celdaY).getGObject() == null);
-	    }
-
+	    celdaX = r.nextInt(13);
+	    celdaY = r.nextInt(13);
 	    switch (pw){
 	    case 0:
 	    	p = new Casco(this, celdaX, celdaY);
@@ -222,9 +224,8 @@ public class Juego{
 	    	break;
 	    
 	    }
-	    this.mapa.getCelda(celdaX, celdaY).setGObject(p);
+	    this.mapa.getCelda(celdaX, celdaY).setPU(p);
 	    gui.levantarEntidad(p);
-	    System.out.println("El powerUp esta en la celda"+celdaX+"  "+celdaY);
 		
 	}
 	public int cantEnemigosON(){
@@ -233,13 +234,16 @@ public class Juego{
 	public void jugadorActivaPw(float x, float y) {
 		Celda c = this.mapa.getCelda((int)x/40,(int) y/40);
 		if (c != null){
-			if (c.getGObject()!=null){
-				this.player.serAfectado((PowerUp) c.getGObject());
-				c.setGObject(null);
+			if (c.getPU()!=null){
+				aumentarPuntaje(500);
+				this.player.serAfectado( c.getPU());
+				gui.eliminarEntidad(c.getPU().getGrafico());
+				c.setPU(null);
 			}
 		}
 	}
 	public Enemigo getEnemigo(int i){
 		return (Enemigo)tanques.get(i);
 	}
+	
 }

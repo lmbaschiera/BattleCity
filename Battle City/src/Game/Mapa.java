@@ -17,7 +17,8 @@ public class Mapa implements InterfazMapa {
 	private int h;
 	private int w;
 	private InterfazGui gui;
-	public Mapa(int x){
+	private Juego j;
+	public Mapa(int x,Juego j){
 		this.h=x;
 		this.w=x;
 		map= new Celda[x][x];
@@ -69,8 +70,6 @@ public class Mapa implements InterfazMapa {
 				}
 				columna+=1;
 			}
-
-			System.out.println("checkpoint");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -86,10 +85,11 @@ public class Mapa implements InterfazMapa {
 	@Override
 	public void eliminarCelda(Celda c) {
 		gui.eliminarEntidad(c.getEntidadGrafica());
-		this.map[(int)c.getX()][(int)c.getY()]=null;
 		Celda cel=new Tierra(this,(int)c.getX(),(int)c.getY());
+		cel.setPU(c.getPU());
+		this.map[(int)c.getX()][(int)c.getY()]=null;
+		
 		this.map[(int)c.getX()][(int)c.getY()]=cel;
 		this.setCelda(cel,(int)cel.getPosX(),(int)cel.getPosY());	
-	//	gui.levantarEntidad(cel);
 	}
 }

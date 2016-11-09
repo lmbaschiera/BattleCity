@@ -1,11 +1,13 @@
 package Pisos;
 
 import Game.EntidadGrafica;
+import Game.InterfazMapa;
+import Game.Juego;
 import Game.Mapa;
 import Tanque.Disparo;
 
 public class Ladrillo extends Celda{
-	public Ladrillo(Mapa mapa,int x, int y){
+	public Ladrillo(InterfazMapa mapa,int x, int y){
 		this.grafico=new EntidadGrafica("/imagenes/rojo.png", 40,40);
 		this.mapa=mapa;
 		this.posX=x;
@@ -32,23 +34,19 @@ public class Ladrillo extends Celda{
 		}
 		return null;
 	}
-	public void vida(boolean p){
-		vida--;
-		if(vida>0)
-			grafico.cambiarImagen(this.setImg());
-		else{
-			mapa.eliminarCelda(this);
-		}
-	}
 	public boolean PuedePasarDisparo() {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public void serAfectado(Disparo d) {
-		d.afectarCelda(this);
-		
+	public void serAfectado(Disparo d,Juego j) {
+		vida--;
+		if(vida>0)
+			grafico.cambiarImagen(this.setImg());
+		else{
+			mapa.eliminarCelda(this);
+		}
 	}
 
 	

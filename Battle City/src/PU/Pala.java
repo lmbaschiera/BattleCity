@@ -3,6 +3,7 @@ package PU;
 import Game.EntidadGrafica;
 import Game.Juego;
 import Game.Mapa;
+import Pisos.Ladrillo;
 import Pisos.Metal;
 import Tanque.Jugador;
 
@@ -23,33 +24,28 @@ public class Pala extends PowerUp{
 
 	@Override
 	public void afectar(Jugador j) {
-		System.out.println("POWER UP ACTIVADO");
-		//Este anda medio medio
-		this.juego.getGui().getMapa().eliminarCelda(this.juego.getGui().getMapa().getCelda(5, 12));
-		this.juego.getGui().getMapa().eliminarCelda(this.juego.getGui().getMapa().getCelda(5, 11));
-		this.juego.getGui().getMapa().eliminarCelda(this.juego.getGui().getMapa().getCelda(6, 11));
-		this.juego.getGui().getMapa().eliminarCelda(this.juego.getGui().getMapa().getCelda(7, 11));
-		this.juego.getGui().getMapa().eliminarCelda(this.juego.getGui().getMapa().getCelda(7, 12));
-		
-		Metal m1 = new Metal((Mapa) this.juego.getGui().getMapa() , 5, 12);
-		Metal m2 = new Metal((Mapa) this.juego.getGui().getMapa() , 5, 11);
-		Metal m3 = new Metal((Mapa) this.juego.getGui().getMapa() , 6, 11);
-		Metal m4 = new Metal((Mapa) this.juego.getGui().getMapa() , 7, 11);
-		Metal m5 = new Metal((Mapa) this.juego.getGui().getMapa() , 7, 12);
-		
-		this.juego.getGui().getMapa().setCelda(m1,5,12);
-		this.juego.getGui().getMapa().setCelda(m2,5,11);
-		this.juego.getGui().getMapa().setCelda(m3,6,11);
-		this.juego.getGui().getMapa().setCelda(m4,7,11);
-		this.juego.getGui().getMapa().setCelda(m5,7,12);
-		
-		this.juego.getGui().levantarEntidad(m1);
-		this.juego.getGui().levantarEntidad(m2);
-		this.juego.getGui().levantarEntidad(m3);
-		this.juego.getGui().levantarEntidad(m4);
-		this.juego.getGui().levantarEntidad(m5);
-		
-				
+		for(int i=5;i<=7;i++){
+			for(int c=11;c<=12;c++){
+				this.juego.getGui().getMapa().eliminarCelda(this.juego.getGui().getMapa().getCelda(i, c));
+				Metal m1 = new Metal(this.juego.getGui().getMapa() , i, c);
+				this.juego.getGui().getMapa().setCelda(m1,i,c);
+				this.juego.getGui().levantarEntidad(m1);
+			}
+		}
+		try {
+			Thread.sleep(20000); // 20 seg la base con metal
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		for(int i=5;i<=7;i++){
+			for(int c=11;c<=12;c++){
+				this.juego.getGui().getMapa().eliminarCelda(this.juego.getGui().getMapa().getCelda(i, c));
+				Ladrillo m1 = new Ladrillo( this.juego.getGui().getMapa() , i, c);
+				this.juego.getGui().getMapa().setCelda(m1,i,c);
+				this.juego.getGui().levantarEntidad(m1);
+			}
+		}		
 	}
 
 }

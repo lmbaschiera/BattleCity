@@ -20,10 +20,8 @@ public class Granada extends PowerUp{
 
 	@Override
 	public void afectar(Jugador j) {
-		System.out.println("POWER UP ACTIVADO");
 		int i = 1;
 		while(i<this.juego.cantEnemigosON()){
-			System.out.println("ahora quedan "+this.juego.cantEnemigosON());
 			this.juego.eliminarMalo(this.juego.getEnemigo(i));
 		}
 			

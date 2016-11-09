@@ -15,7 +15,7 @@ public class Frenar extends PowerUp  {
 	
 	public void run() {
 		Thread t1;
-		int tiempo =1000;
+		int tiempo =5000;
 		int actual = 0;
 		for(int i = 1;i<=this.juego.cantEnemigosON();i++){
 			this.juego.getEnemigo(i).terminate();

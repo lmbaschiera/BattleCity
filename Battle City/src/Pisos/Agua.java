@@ -1,15 +1,18 @@
 package Pisos;
 
 import Game.EntidadGrafica;
+import Game.InterfazMapa;
+import Game.Juego;
 import Game.Mapa;
 import Tanque.Disparo;
 
 public class Agua extends Celda{
-	public Agua(Mapa mapa,int x, int y){
+	public Agua(InterfazMapa mapa,int x, int y){
 		this.grafico=new EntidadGrafica("/imagenes/azul.png", 40,40);
 		this.mapa=mapa;
 		this.posX=x;
 		this.posY=y;
+		this.obj=null;
 	}
 
 	@Override
@@ -27,15 +30,6 @@ public class Agua extends Celda{
 	}
 
 	@Override
-	public void serAfectado(Disparo d) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void vida(boolean p) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void serAfectado(Disparo d,Juego j) {}
 
 }

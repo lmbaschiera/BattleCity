@@ -1,11 +1,13 @@
 package Pisos;
 
 import Game.EntidadGrafica;
+import Game.InterfazMapa;
+import Game.Juego;
 import Game.Mapa;
 import Tanque.Disparo;
 
 public class Metal extends Celda {
-	public Metal(Mapa mapa,int x, int y){
+	public Metal(InterfazMapa mapa,int x, int y){
 		this.grafico=new EntidadGrafica("/imagenes/blanco.png", 40,40);
 		this.mapa=mapa;
 		this.posX=x;
@@ -26,20 +28,12 @@ public class Metal extends Celda {
 	}
 
 	@Override
-	public void serAfectado(Disparo d) {
+	public void serAfectado(Disparo d,Juego j) {
 		if (d.canI()){
-			d.afectarCelda(this);
-		}
-	}
-
-	public void vida(boolean p){
-		System.out.println(""+this.vida);
-		if (p){
 			vida--;
 			if(vida==0)
 				mapa.eliminarCelda(this);
 		}
 	}
-
 }
 

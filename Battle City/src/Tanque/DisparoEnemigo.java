@@ -24,7 +24,7 @@ public class DisparoEnemigo extends Disparo {
 			}
 			MiTanque.aumentarDisparosDisponibles();
 			if (gui.getMapa().getCelda((int)(posX+(corrimiento_x*velocidad))/40, (int)(posY+(corrimiento_y*velocidad))/40)!=null)
-				gui.getMapa().getCelda((int)(posX+(corrimiento_x*velocidad))/40, (int)(posY+(corrimiento_y*velocidad))/40).serAfectado(this);
+				gui.getMapa().getCelda((int)(posX+(corrimiento_x*velocidad))/40, (int)(posY+(corrimiento_y*velocidad))/40).serAfectado(this,this.juego);
 			gui.eliminarEntidad(grafico);
 	}
 		catch(InterruptedException e1){}

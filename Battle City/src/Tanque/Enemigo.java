@@ -126,7 +126,6 @@ public class Enemigo extends Tanque implements Runnable{
 		
 		if(this.reducirVida()==0){
 			System.out.println("Me pegaron");
-			gui.eliminarEntidad(this.getGrafico());
 			juego.eliminarMalo(this);
 		}
 	}

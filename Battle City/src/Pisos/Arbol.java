@@ -1,13 +1,15 @@
 package Pisos;
 
 import Game.EntidadGrafica;
+import Game.InterfazMapa;
+import Game.Juego;
 import Game.Mapa;
 import Tanque.Disparo;
 
 import javax.swing.JLabel;
 
 public class Arbol extends Celda{
-	public Arbol(Mapa mapa,int x, int y){
+	public Arbol(InterfazMapa mapa,int x, int y){
 		this.grafico= new EntidadGrafica("/imagenes/Arbol2.png", 40,40);
 		this.mapa=mapa;
 		this.posX=x;
@@ -25,13 +27,8 @@ public class Arbol extends Celda{
 	}
 
 	@Override
-	public void serAfectado(Disparo d) {
+	public void serAfectado(Disparo d,Juego j) {
 		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void vida(boolean p) {
 		
 	}
 }

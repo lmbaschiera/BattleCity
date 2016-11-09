@@ -48,9 +48,5 @@ public abstract class Disparo extends GameObject implements Runnable {
 		return romperMetal;
 	}
 
-	public void afectarCelda(Celda c) {
-		c.vida(romperMetal);
-	}
-
 	
 }

@@ -1,11 +1,13 @@
 package Pisos;
 
 import Game.EntidadGrafica;
+import Game.InterfazMapa;
+import Game.Juego;
 import Game.Mapa;
 import Tanque.Disparo;
 
 public class Tierra extends Celda {
-	public Tierra(Mapa mapa,int x, int y){
+	public Tierra(InterfazMapa mapa,int x, int y){
 		this.grafico=new EntidadGrafica("/imagenes/marron.png", 40,40);
 		this.mapa=mapa;
 		this.posX=x;
@@ -22,12 +24,7 @@ public class Tierra extends Celda {
 	}
 
 	@Override
-	public void serAfectado(Disparo d) {
-		
-	}
-
-	@Override
-	public void vida(boolean p) {
+	public void serAfectado(Disparo d,Juego j) {
 		
 	}
 
