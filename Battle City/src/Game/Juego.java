@@ -190,9 +190,9 @@ public class Juego{
 	public void gameOver(){
 		CEON.terminate();
 		DE.terminate();
-		System.out.println("Felicitaciones! terminaste el juego con " +this.puntaje);
 		gui.setVisible(false);
 		gui.dispose();
+		postGUI p=new postGUI(puntaje);
 	}
 	public void crearPU(){
 		Random r= new Random();

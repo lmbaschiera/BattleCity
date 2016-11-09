@@ -7,6 +7,11 @@ public class DisparadorEnemigos extends Thread {
 		this.j=j;
 		
 	}
+	public void start(){
+		execute=true;
+		run();
+	}
+	
 	public void terminate(){
 		execute=false;
 	}

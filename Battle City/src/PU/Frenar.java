@@ -17,9 +17,9 @@ public class Frenar extends PowerUp  {
 		Thread t1;
 		int tiempo =5000;
 		int actual = 0;
+		this.juego.frenarDisparador();
 		for(int i = 1;i<=this.juego.cantEnemigosON();i++){
 			this.juego.getEnemigo(i).terminate();
-			this.juego.frenarDisparador();
 		}
 		while (tiempo>actual){
 			actual+=100;
@@ -32,8 +32,10 @@ public class Frenar extends PowerUp  {
 		}
 		for (int i = 1; i<=this.juego.cantEnemigosON();i++){
 				t1= new Thread(this.juego.getEnemigo(i));
-				t1.start();
+				
+				t1.start(); 
 			}
+		juego.activarDisparador();
 	}
 
 	@Override
