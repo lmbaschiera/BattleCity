@@ -21,6 +21,9 @@ public abstract class Tanque extends GameObject {
 	public void disminuirDisparosDisponibles(){
 		disparosDisponibles--;
 	}
+	public int getHits() {
+		return golpesQueResiste;
+	}
 	public int getLado(){
 		return this.grafico.getH();
 	}

@@ -1,11 +1,7 @@
 package Game;
 import java.awt.event.KeyEvent;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.Iterator;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Random;
 
 import PU.*;
@@ -13,11 +9,12 @@ import Pisos.*;
 import Tanque.*;
 
 public class Juego{
+	private Timer T;
 	private Jugador player;
 	private LinkedList<Tanque> tanques;
 	private InterfazGui gui;
 	private InterfazMapa mapa;
-	private int puntaje;
+	private int puntaje, time;
 	private static int h=40;
 	private static int w=40;
 	private int activadorPU;
@@ -36,11 +33,11 @@ public class Juego{
 		p.dispose();
 		puntaje=0;
 		this.activadorPU=0;
-		tanques= new LinkedList();
+		tanques= new LinkedList<Tanque>();
 		player=new Jugador(this,this.getPosXInicialTanque()[0],this.getPosXInicialTanque()[1]);
 		tanques.addLast(player);
 		gui=new GUI(this);
-		mapa=new Mapa(13,this);
+		mapa=new Mapa(13);
 		mapa.armarMapa("mapa1.txt");
 		gui.levantarMapa(mapa);
 		mapa.setGui(gui);
@@ -48,11 +45,14 @@ public class Juego{
 		CEON.start();
 		DE=new DisparadorEnemigos(this);
 		DE.start();
+		gui.armarHits();
+		T=new Timer(this);
+		T.start();
 	}
 	
 	public void aumentarPuntaje(int i){
 		this.puntaje+=i;
-		System.out.println("Puntaje aumento a = "+puntaje);
+		gui.armarScore();
 	}
 	public void crearMalo(){
 		Random rnd=new Random();
@@ -187,13 +187,19 @@ public class Juego{
 		float[] toRet={164,480};
 		return toRet;
 	}
+	@SuppressWarnings("unused")
 	public void gameOver(){
 		CEON.terminate();
 		DE.terminate();
+	//	T.terminate();
 		gui.setVisible(false);
 		gui.dispose();
 		postGUI p=new postGUI(puntaje);
 	}
+	public int getPuntaje() {
+		return puntaje;
+	}
+
 	public void crearPU(){
 		Random r= new Random();
 		int celdaX,celdaY,pw;
@@ -250,5 +256,14 @@ public class Juego{
 	}
 	public void activarDisparador(){
 		this.DE.start();
+	}
+
+	public int getTimer() {
+		return time;
+	}
+
+	public void setTimer(int t2) {
+		this.time=t2;
+		gui.armarTimer();
 	}
 }

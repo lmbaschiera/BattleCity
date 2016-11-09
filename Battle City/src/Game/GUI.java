@@ -2,58 +2,44 @@ package Game;
 
 import javax.swing.*;
 
-import PU.Frenar;
 import PU.Pala;
 import PU.PowerUp;
-import Pisos.Agua;
-import Pisos.Arbol;
-import Pisos.Celda;
-import Pisos.Ladrillo;
-import Pisos.Metal;
-import Tanque.Enemigo;
 import Tanque.Jugador;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.io.*;
 
+@SuppressWarnings("serial")
 public class GUI extends JFrame implements InterfazGui{
-	private JPanel panel,panelObstaculos,panelFondo;
-	private EntidadGrafica[] jugadorGrafico;
-	private EntidadGrafica[] enemigoGrafico;
+	private JPanel panelObstaculos;
+	private EntidadGrafica[] score;
+	private EntidadGrafica vida, hits;
+	private EntidadGrafica[] timer;
 	private Jugador player;
 	private InterfazMapa mapa;
 	private Juego juego;
 	private static final int h=40;
 	private static final int w=40;
-	private boolean creado;
-	
-	
 	public GUI(Juego juego){
 		this.juego=juego;
 		player=juego.getJugador();
 		player.setGui(this);
 		
 		
-		creado=false;
-		
-		setSize(new Dimension(w*14, h*14)); // 1024 768
+		setSize(new Dimension(640, 560)); // 1024 768     +11
 		getContentPane().setLayout(null);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		panelFondo=new JPanel();
+		this.setResizable(false);
 		
 		
 		panelObstaculos=new JPanel();
 		panelObstaculos.setLayout(null);
 		panelObstaculos.setBackground(Color.BLACK);
-		
-		
-
-		
-		
-		
 		setContentPane(panelObstaculos);
 		
+		armarScore();
+		armarVida();
+		armarTimer();
 		
 		panelObstaculos.setVisible(true);
 		
@@ -96,15 +82,73 @@ public class GUI extends JFrame implements InterfazGui{
 		}
 	});
 }	
+	public void armarTimer() {
+		timer=new EntidadGrafica[4];
+		int t=juego.getTimer();
+		timer[3]=new EntidadGrafica("/imagenes/numeros2/"+t%10+".png", 18,17);
+		timer[2]=new EntidadGrafica("/imagenes/numeros2/"+(t/10)%6+".png", 18,17);
+		timer[3].getGrafico().setBounds(536+3*22, 386, 18, 17);
+		this.panelObstaculos.add(timer[3].getGrafico());
+		this.panelObstaculos.setComponentZOrder(timer[3].getGrafico(), 0);
+		t/=10;
+		timer[2].getGrafico().setBounds(536+2*22, 386, 18, 17);
+		this.panelObstaculos.add(timer[2].getGrafico());
+		this.panelObstaculos.setComponentZOrder(timer[2].getGrafico(), 0);
+		t/=6;
+		timer[1]=new EntidadGrafica("/imagenes/numeros2/"+t%10+".png", 18,17);
+		timer[0]=new EntidadGrafica("/imagenes/numeros2/"+(t/10)%10+".png", 18,17);
+		timer[1].getGrafico().setBounds(532+1*22, 386, 18, 17);
+		this.panelObstaculos.add(timer[1].getGrafico());
+		this.panelObstaculos.setComponentZOrder(timer[1].getGrafico(), 0);
+		t/=10;
+		timer[0].getGrafico().setBounds(532+0*22, 386, 18, 17);
+		this.panelObstaculos.add(timer[0].getGrafico());
+		this.panelObstaculos.setComponentZOrder(timer[0].getGrafico(), 0);
+		revalidate();
+		repaint();
+	}
+	public void armarVida() {
+		int v=juego.getJugador().getVida();
+		vida=new EntidadGrafica("/imagenes/numeros/"+v%10+".png",25,24);
+		this.panelObstaculos.add(vida.getGrafico());
+		this.panelObstaculos.setComponentZOrder(vida.getGrafico(), 0);
+		vida.getGrafico().setBounds(600, 30, 25, 24);
+		revalidate();
+		repaint();
+	}
+	public void armarScore() {
+		score=new EntidadGrafica[5];
+		int s=juego.getPuntaje();
+		for (int i=4; i>-1; i--){
+			score[i]=new EntidadGrafica("/imagenes/numeros2/"+s%10+".png", 18, 17);
+			score[i].getGrafico().setBounds(522+i*23, 125, 18, 17);
+			this.getContentPane().add(score[i].getGrafico());
+			this.getContentPane().setComponentZOrder(score[i].getGrafico(), 0);
+			s/=10;
+		}
+		this.getContentPane().revalidate();
+		this.getContentPane().repaint();
+	}
+	@Override
+	public void armarHits() {
+		int h=juego.getJugador().getHits();
+		System.out.println(h+"");
+		hits=new EntidadGrafica("/imagenes/numeros/"+h%10+".png",25,24);
+		this.panelObstaculos.add(hits.getGrafico());
+		this.panelObstaculos.setComponentZOrder(hits.getGrafico(), 0);
+		hits.getGrafico().setBounds(565, 250, 25, 24);
+		revalidate();
+		repaint();
+	}
 	public void moverEntidad(EntidadGrafica move, int x, int y){
 		move.getGrafico().setBounds(x, y, move.getW(), move.getH());
-		this.revalidate();
-		this.repaint();
+		this.getContentPane().revalidate();
+		this.getContentPane().repaint();
 	}
 	public void levantarMapa(InterfazMapa map){
 		this.mapa=map;
-		EntidadGrafica aux=new EntidadGrafica("/imagenes/suelo.png", 0, 0);
-		aux.getGrafico().setBounds(0, 0, 1024, 1024);
+		EntidadGrafica aux = new EntidadGrafica("/imagenes/suelo.png", 0, 0);
+		aux.getGrafico().setBounds(0, -233, 1024, 1024); // 272
 		panelObstaculos.add(aux.getGrafico());
 		for(int i=0;i<mapa.getTamaño();i++){
 			for(int j=0;j<mapa.getTamaño();j++){
@@ -117,8 +161,8 @@ public class GUI extends JFrame implements InterfazGui{
 			}
 		}
 		getContentPane().setComponentZOrder(player.getGrafico().getGrafico(), 0);
-		this.repaint();
-		this.revalidate();
+		this.getContentPane().repaint();
+		this.getContentPane().revalidate();
 	}
 
 	

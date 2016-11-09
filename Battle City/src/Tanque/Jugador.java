@@ -57,6 +57,9 @@ public class Jugador extends Tanque {
 			gui.moverEntidad(this.getGrafico(), (int)posX, (int)posY);
 			
 	}
+	public int getVida() {
+		return vida;
+	}
 	public void setInvulnerable(){
 		invulnerable=(!invulnerable);
 	}
@@ -94,13 +97,17 @@ public class Jugador extends Tanque {
 		this.getGrafico().cambiarImagen(this.getNivel().getImg(this.lastMovement));
 		disparosDisponibles=level.getDisparosSimultaneos();
 		golpesQueResiste=level.GolpesQueResiste;
+		juego.getGui().armarHits();
 		gui.moverEntidad(this.getGrafico(), (int)posX, (int)posY);
 	}
 	private void meHitearon(){
 		--golpesQueResiste;
+		juego.getGui().armarHits();
 		if(golpesQueResiste==0){
 			resetearJugador();
-			if(this.reducirVida()==0){
+			this.reducirVida();
+			juego.getGui().armarVida();
+			if(this.vida==0){
 				 juego.gameOver();
 			}
 		}

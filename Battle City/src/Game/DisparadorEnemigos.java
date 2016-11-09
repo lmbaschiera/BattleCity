@@ -7,10 +7,6 @@ public class DisparadorEnemigos extends Thread {
 		this.j=j;
 		
 	}
-	public void start(){
-		execute=true;
-		run();
-	}
 	
 	public void terminate(){
 		execute=false;
@@ -28,7 +24,6 @@ public class DisparadorEnemigos extends Thread {
 				
 			}
 		}catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}

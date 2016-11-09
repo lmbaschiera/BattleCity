@@ -1,7 +1,5 @@
 package Game;
 
-import Tanque.Enemigo;
-
 public interface InterfazGui {
 	public void moverEntidad(EntidadGrafica e, int x, int y);
 	public void eliminarEntidad(EntidadGrafica e);
@@ -12,4 +10,8 @@ public interface InterfazGui {
 	public InterfazMapa getMapa();
 	public void setVisible(boolean p);
 	public void dispose();
+	public void armarTimer();
+	public void armarScore();
+	public void armarVida();
+	public void armarHits();
 }
