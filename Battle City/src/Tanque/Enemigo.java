@@ -4,7 +4,6 @@ import java.awt.event.KeyEvent;
 import java.util.Random;
 
 import Game.EntidadGrafica;
-import Game.GUI;
 import Game.InterfazGui;
 import Game.Juego;
 
@@ -100,7 +99,6 @@ public class Enemigo extends Tanque implements Runnable{
 				
 				Thread.sleep(50);
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}

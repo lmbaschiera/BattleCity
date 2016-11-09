@@ -15,12 +15,9 @@ import Pisos.Tierra;
 public class Mapa implements InterfazMapa {
 	private Celda[][] map;
 	private int h;
-	private int w;
 	private InterfazGui gui;
-	private Juego j;
-	public Mapa(int x,Juego j){
+	public Mapa(int x){
 		this.h=x;
-		this.w=x;
 		map= new Celda[x][x];
 	}
 	public void setCelda(Celda celda, int x, int y){

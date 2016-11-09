@@ -5,6 +5,7 @@ import java.awt.Font;
 import javax.swing.*;
 import java.awt.Color;
 
+@SuppressWarnings("serial")
 public class postGUI extends JFrame{
 	private JLabel background, scorelabel;
 	public postGUI(int score){

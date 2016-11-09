@@ -1,7 +1,4 @@
 package Game;
-
-import Tanque.Enemigo;
-
 public interface InterfazGui {
 	public void moverEntidad(EntidadGrafica e, int x, int y);
 	public void eliminarEntidad(EntidadGrafica e);

@@ -1,11 +1,7 @@
 package Game;
 import java.awt.event.KeyEvent;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.Iterator;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Random;
 
 import PU.*;
@@ -36,11 +32,11 @@ public class Juego{
 		p.dispose();
 		puntaje=0;
 		this.activadorPU=0;
-		tanques= new LinkedList();
+		tanques= new LinkedList<Tanque>();
 		player=new Jugador(this,this.getPosXInicialTanque()[0],this.getPosXInicialTanque()[1]);
 		tanques.addLast(player);
 		gui=new GUI(this);
-		mapa=new Mapa(13,this);
+		mapa=new Mapa(13);
 		mapa.armarMapa("mapa1.txt");
 		gui.levantarMapa(mapa);
 		mapa.setGui(gui);
@@ -209,7 +205,7 @@ public class Juego{
 		DE.terminate();
 		gui.setVisible(false);
 		gui.dispose();
-		postGUI p=new postGUI(puntaje);
+		new postGUI(puntaje);
 	}
 	public void crearPU(){
 		Random r= new Random();

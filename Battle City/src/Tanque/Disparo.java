@@ -6,8 +6,7 @@ import Game.EntidadGrafica;
 import Game.GameObject;
 import Game.InterfazGui;
 import Game.Juego;
-import Pisos.Celda;
-import Pisos.Ladrillo;
+
 
 public abstract class Disparo extends GameObject implements Runnable {
 	protected int velocidad;

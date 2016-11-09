@@ -3,44 +3,30 @@ package Game;
 import javax.swing.*;
 
 import PU.Frenar;
-import PU.Pala;
 import PU.PowerUp;
-import Pisos.Agua;
-import Pisos.Arbol;
-import Pisos.Celda;
-import Pisos.Ladrillo;
-import Pisos.Metal;
-import Tanque.Enemigo;
 import Tanque.Jugador;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.io.*;
 
+
+@SuppressWarnings("serial")
 public class GUI extends JFrame implements InterfazGui{
-	private JPanel panel,panelObstaculos,panelFondo;
-	private EntidadGrafica[] jugadorGrafico;
-	private EntidadGrafica[] enemigoGrafico;
+	private JPanel panelObstaculos;
 	private Jugador player;
 	private InterfazMapa mapa;
-	private Juego juego;
 	private static final int h=40;
 	private static final int w=40;
-	private boolean creado;
-	
 	
 	public GUI(Juego juego){
-		this.juego=juego;
 		player=juego.getJugador();
 		player.setGui(this);
 		
 		
-		creado=false;
-		
 		setSize(new Dimension(w*14, h*14)); // 1024 768
 		getContentPane().setLayout(null);
+		this.setResizable(false);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		panelFondo=new JPanel();
 		
 		
 		panelObstaculos=new JPanel();

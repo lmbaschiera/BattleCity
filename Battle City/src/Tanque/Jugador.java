@@ -11,7 +11,7 @@ public class Jugador extends Tanque {
 	protected boolean invulnerable;
 	public Jugador(Juego juego,float x, float y ){
 		this.juego=juego;
-		this.grafico=new EntidadGrafica("/imagenes/lvl4-37.png", 32,32);
+		this.grafico=new EntidadGrafica("/imagenes/lvl1-37.png", 32,32);
 		level= new Nivel1();
 		disparosDisponibles=level.getDisparosSimultaneos();
 		this.golpesQueResiste=level.getGolpesQueResiste();

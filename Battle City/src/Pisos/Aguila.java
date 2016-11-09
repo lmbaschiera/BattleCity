@@ -3,7 +3,6 @@ package Pisos;
 import Game.EntidadGrafica;
 import Game.InterfazMapa;
 import Game.Juego;
-import Game.Mapa;
 import Tanque.Disparo;
 
 public class Aguila extends Celda {

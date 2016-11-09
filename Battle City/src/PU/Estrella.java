@@ -16,8 +16,6 @@ public class Estrella extends PowerUp{
 	
 	@Override
 	public void run() {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override

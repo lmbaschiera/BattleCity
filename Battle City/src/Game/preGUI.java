@@ -5,10 +5,9 @@ import java.awt.event.KeyEvent;
 
 import javax.swing.*;
 
-import Tanque.Jugador;
 
+@SuppressWarnings("serial")
 public class preGUI extends JFrame{
-	private Juego j;
 	private JLabel option, background, howto;
 	private boolean opt,empiezaJuego;
 	public preGUI(){
@@ -26,7 +25,7 @@ public class preGUI extends JFrame{
 		this.setComponentZOrder(background, 1);
 		this.setVisible(true);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-		boolean empiezaJuego=false;
+		empiezaJuego=false;
 		opt=true;
 		this.addKeyListener(new kAdapter());
 	}
