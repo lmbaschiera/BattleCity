@@ -14,6 +14,7 @@ public class Jugador extends Tanque {
 		this.grafico=new EntidadGrafica("/imagenes/lvl4-37.png", 32,32);
 		level= new Nivel4();
 		disparosDisponibles=level.getDisparosSimultaneos();
+		this.golpesQueResiste=level.getGolpesQueResiste();
 		posX= x;
 		posY= y;
 		this.vida=3;
@@ -57,7 +58,7 @@ public class Jugador extends Tanque {
 			
 	}
 	public void setInvulnerable(){
-		invulnerable=!invulnerable;
+		invulnerable=(!invulnerable);
 	}
 	public void efectuarDisparo(){
 		if(disparosDisponibles>0){
@@ -85,16 +86,21 @@ public class Jugador extends Tanque {
 	public void serAfectado(PowerUp p){
 		p.afectar(this);
 	}
+	private void resetearJugador(){
+		float[] posIniciales=juego.getPosXInicialTanque();
+		posX=posIniciales[0];
+		posY=posIniciales[1];
+		level=new Nivel1();
+		this.getGrafico().cambiarImagen(this.getNivel().getImg(this.lastMovement));
+		disparosDisponibles=level.getDisparosSimultaneos();
+		golpesQueResiste=level.GolpesQueResiste;
+		gui.moverEntidad(this.getGrafico(), (int)posX, (int)posY);
+	}
 	private void meHitearon(){
-		if(--golpesQueResiste==0){
+		--golpesQueResiste;
+		if(golpesQueResiste==0){
 			if(this.reducirVida()!=0){
-				float[] posIniciales=juego.getPosXInicialTanque();
-				posX=posIniciales[0];
-				posY=posIniciales[1];
-				level=new Nivel1();
-				disparosDisponibles=level.getDisparosSimultaneos();
-				golpesQueResiste=level.GolpesQueResiste;
-				gui.moverEntidad(this.getGrafico(), (int)posX, (int)posY);
+				resetearJugador();
 			}
 			else juego.gameOver();
 		}
@@ -107,9 +113,9 @@ public class Jugador extends Tanque {
 		this.vida++;
 	}
 	public void serAfectado(Disparo d) {
-		System.out.println("me han hitea2");
-		if(!invulnerable)
+		if(!invulnerable){
 			this.meHitearon();
+		}
 	}
 	
 }

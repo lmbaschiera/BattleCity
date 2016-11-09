@@ -15,7 +15,7 @@ public class ControladorEnemigosON extends Thread {
 			try {
 				if(j.cantEnemigosON()<4){
 					j.crearMalo();
-					Thread.sleep(2000);
+					Thread.sleep(4000);
 				}
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block

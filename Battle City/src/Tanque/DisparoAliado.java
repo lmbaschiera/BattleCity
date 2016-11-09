@@ -13,8 +13,8 @@ public class DisparoAliado extends Disparo {
 			execute = true;
 			while (execute){
 				if(juego.DisparoPuedeEstarAca(posX+(corrimiento_x*velocidad), posY+(corrimiento_y*velocidad),this.direccion,this)){
-					posX+=corrimiento_x*velocidad;
-					posY+=corrimiento_y*velocidad;
+					posX+=(corrimiento_x*velocidad);
+					posY+=(corrimiento_y*velocidad);
 					gui.moverEntidad(this.grafico, (int)posX, (int)posY);
 					Thread.sleep(12);
 				}

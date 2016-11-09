@@ -29,9 +29,7 @@ public class GUI extends JFrame implements InterfazGui{
 	
 	
 	public GUI(Juego juego){
-		super();
 		this.juego=juego;
-		
 		player=juego.getJugador();
 		player.setGui(this);
 		
@@ -50,7 +48,7 @@ public class GUI extends JFrame implements InterfazGui{
 		panelObstaculos.setBackground(Color.BLACK);
 		
 		
-		inicializarImagenes();
+
 		
 		
 		
@@ -122,25 +120,7 @@ public class GUI extends JFrame implements InterfazGui{
 		this.repaint();
 		this.revalidate();
 	}
-	private void inicializarImagenes(){
-		/*jugadorGrafico=new EntidadGrafica[4];
-		jugadorGrafico=player.getNivel().getImg();
-		enemigoGrafico=new EntidadGrafica[4];
-		enemigoGrafico[0]=new EntidadGrafica("/imagenes/enemy1-37.png", 32, 32);
-		enemigoGrafico[1]=new EntidadGrafica("/imagenes/enemy1-38.png", 32, 32);
-		enemigoGrafico[2]=new EntidadGrafica("/imagenes/enemy1-39.png", 32, 32);
-		enemigoGrafico[3]=new EntidadGrafica("/imagenes/enemy1-40.png", 32, 32);
-		jugadorGrafico=new ImageIcon[4];
-		jugadorGrafico[0]=new ImageIcon(this.getClass().getResource("/imagenes/37.png"));
-		jugadorGrafico[1]=new ImageIcon(this.getClass().getResource("/imagenes/38.png"));
-		jugadorGrafico[2]=new ImageIcon(this.getClass().getResource("/imagenes/39.png"));
-		jugadorGrafico[3]=new ImageIcon(this.getClass().getResource("/imagenes/40.png"));
-		enemigoGrafico = new ImageIcon[4];
-		enemigoGrafico[0] = new ImageIcon(this.getClass().getResource("/imagenes/enemy37.png"));
-		enemigoGrafico[1] = new ImageIcon(this.getClass().getResource("/imagenes/enemy38.png"));
-		enemigoGrafico[2] = new ImageIcon(this.getClass().getResource("/imagenes/enemy39.png"));
-		enemigoGrafico[3] = new ImageIcon(this.getClass().getResource("/imagenes/enemy40.png"));*/
-	}
+
 	
 	public void levantarEntidad(GameObject go){
 		JLabel l=go.getGrafico().getGrafico();

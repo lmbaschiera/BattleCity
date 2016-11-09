@@ -23,6 +23,13 @@ public class Juego{
 	private int activadorPU;
 	private ControladorEnemigosON CEON;
 	public Juego(){
+		preGUI p=new preGUI();
+		boolean a;
+		while (a=!p.empiezaJuego()){
+			System.out.println(a);
+		}
+		p.setVisible(false);
+		p.dispose();
 		puntaje=0;
 		this.activadorPU=0;
 		tanques= new LinkedList();
@@ -35,12 +42,13 @@ public class Juego{
 		mapa.setGui(gui);
 		CEON=new ControladorEnemigosON(this);
 		CEON.run();
+
 	}
 	
 	
 	public void crearMalo(){
 		Random rnd=new Random();
-		Enemigo e=new Enemigo(rnd.nextInt(14)+32,0,this,gui,(byte)rnd.nextInt(4));
+		Enemigo e=new Enemigo(rnd.nextInt(14)*32,0,this,gui,(byte)rnd.nextInt(4));
 		gui.levantarEntidad(e);
 		tanques.add(e);
 		Thread t1 = new Thread(e);
@@ -73,7 +81,7 @@ public class Juego{
 				Tanque tanque=it.next();
 				if(tanque!=t){
 					switch(t.getLastMovement()){
-					case KeyEvent.VK_UP :		 // direccion representa la direccion CON LA QUE SALIO EL disparo
+					case KeyEvent.VK_UP :		
 						if(tanque.getPosY()< y)
 						puede=!((tanque.getPosX()<=x && tanque.getPosX()+tanque.getLado()>=x) && (tanque.getPosY()+tanque.getLado()>= y));
 						break;
@@ -181,7 +189,7 @@ public class Juego{
 		celdaY= 0;
 		boolean encontre = false;
 	
-	    pw = r.nextInt(5);
+	    pw = r.nextInt(6);
 	    switch (pw){
 	    case 0:
 	    	p = new Casco(this);
@@ -205,8 +213,8 @@ public class Juego{
 	    }
 	    
 	    while (!encontre){
-	    	celdaX = r.nextInt(12);
-	    	celdaY = r.nextInt(12);
+	    	celdaX = r.nextInt(14);
+	    	celdaY = r.nextInt(14);
 	    	encontre = (this.mapa.getCelda(celdaX, celdaY).getGObject() == null);
 	    }
 	    
