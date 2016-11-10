@@ -18,6 +18,7 @@ public class Frenar extends PowerUp  {
 		int tiempo =5000;
 		int actual = 0;
 		this.juego.frenarDisparador();
+		this.juego.frenarControladorEnemigos();
 		for(int i = 1;i<=this.juego.cantEnemigosON();i++){
 			this.juego.getEnemigo(i).terminate();
 		}
@@ -35,6 +36,7 @@ public class Frenar extends PowerUp  {
 				t1.start(); 
 			}
 		juego.activarDisparador();
+		juego.activarControladorEnemigos();
 	}
 
 	@Override

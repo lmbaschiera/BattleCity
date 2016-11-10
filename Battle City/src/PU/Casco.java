@@ -14,7 +14,7 @@ public class Casco extends PowerUp {
 	
 	@Override
 	public void run() {
-		int tiempo =1000;
+		int tiempo =5000;
 		this.juego.getJugador().setInvulnerable();
 		int actual = 0;
 		while (tiempo>actual){

@@ -5,6 +5,7 @@ import java.awt.event.KeyEvent;
 import Game.EntidadGrafica;
 import Game.InterfazGui;
 import Game.Juego;
+import PU.Casco;
 import PU.PowerUp;
 public class Jugador extends Tanque {
 	protected int vida;
@@ -19,6 +20,7 @@ public class Jugador extends Tanque {
 		posY= y;
 		this.vida=3;
 		this.invulnerable=false;
+		this.lastMovement=37;
 	}
 	public void setGui(InterfazGui gui){
 		this.gui=gui;
@@ -100,6 +102,7 @@ public class Jugador extends Tanque {
 		golpesQueResiste=level.GolpesQueResiste;
 		juego.getGui().armarHits();
 		gui.moverEntidad(this.getGrafico(), (int)posX, (int)posY);
+		this.serAfectado(new Casco(this.juego,0,0));
 	}
 	private void meHitearon(){
 		--golpesQueResiste;

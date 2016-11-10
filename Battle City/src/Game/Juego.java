@@ -84,27 +84,6 @@ public class Juego{
 		} 
 		boolean puede;
 		puede=mapa.getCelda((int)(x/h),(int) (y/w)).PuedePasarTanque();
-		/**
-		 switch(t.getLastMovement()){
-					case KeyEvent.VK_UP :		
-						if(tanque.getPosY()< y)
-						puede=!((tanque.getPosX()<=x && tanque.getPosX()+tanque.getLado()>=x) && (tanque.getPosY()+tanque.getLado()>= y));
-						break;
-					case KeyEvent.VK_DOWN :
-						if(tanque.getPosY()> y)
-							puede=!((tanque.getPosX()<=x && tanque.getPosX()+tanque.getLado()>=x) && (tanque.getPosY()<= (y+10)));
-						break;
-					case KeyEvent.VK_RIGHT :
-						if(tanque.getPosX()> x)
-						puede=!((tanque.getPosY()<=y && tanque.getPosY()+tanque.getLado()>=y) && (tanque.getPosX()<=x+10));
-						break;
-					case KeyEvent.VK_LEFT :
-						if(tanque.getPosX()< x)
-						puede=!((tanque.getPosY()<=y && tanque.getPosY()+tanque.getLado()>=y) && ((tanque.getPosX()+tanque.getLado())>= x));
-						break;
-					}
-		  **/
-		 
 		if(puede){
 			Iterator<Tanque>it=tanques.iterator();
 			while(it.hasNext() && puede){
@@ -224,8 +203,14 @@ public class Juego{
 		celdaX = 0;
 		celdaY= 0;
 	    pw = r.nextInt(6);
+	    
 	    celdaX = r.nextInt(13);
 	    celdaY = r.nextInt(13);
+	    
+	    while (!this.mapa.getCelda(celdaX, celdaY).PuedePasarTanque()){
+	    	celdaX = r.nextInt(13);
+		    celdaY = r.nextInt(13);
+	    }
 	    switch (pw){
 	    case 0:
 	    	p = new Casco(this, celdaX, celdaY);
@@ -275,7 +260,13 @@ public class Juego{
 		this.DE=new DisparadorEnemigos(this);
 		this.DE.start();
 	}
-
+	public void frenarControladorEnemigos(){
+		this.CEON.terminate();
+	}
+	public void activarControladorEnemigos(){
+		this.CEON=new ControladorEnemigosON(this);
+		this.CEON.start();
+	}
 	public int getTimer() {
 		return time;
 	}
