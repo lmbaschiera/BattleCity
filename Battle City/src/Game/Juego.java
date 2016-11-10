@@ -272,6 +272,7 @@ public class Juego{
 		this.DE.terminate();
 	}
 	public void activarDisparador(){
+		this.DE=new DisparadorEnemigos(this);
 		this.DE.start();
 	}
 

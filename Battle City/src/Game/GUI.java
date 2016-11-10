@@ -2,8 +2,8 @@ package Game;
 
 import javax.swing.*;
 
-import PU.Pala;
-import PU.PowerUp;
+
+import PU.*;
 import Tanque.Jugador;
 
 import java.awt.*;
@@ -64,7 +64,7 @@ public class GUI extends JFrame implements InterfazGui{
 					
 
 					case 'u':
-						PowerUp p = new Pala(juego, 0, 0);
+						PowerUp p = new Frenar(juego, 0, 0);
 						p.afectar(player);
 						break;
 					
