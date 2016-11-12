@@ -6,6 +6,7 @@ import java.util.Random;
 import Game.EntidadGrafica;
 import Game.InterfazGui;
 import Game.Juego;
+import PU.PowerUp;
 
 public class Enemigo extends Tanque implements Runnable{
 	protected boolean execute;
@@ -124,8 +125,10 @@ public class Enemigo extends Tanque implements Runnable{
 	public void serAfectado(Disparo d) {
 		
 		if(this.reducirVida()==0){
-			System.out.println("Me pegaron");
 			juego.eliminarMalo(this);
 		}
+	}
+	public void serAfectado(PowerUp pu){
+		
 	}
 }

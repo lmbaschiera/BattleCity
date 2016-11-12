@@ -39,4 +39,7 @@ public abstract class Celda extends GameObject {
 	public PowerUp getPU(){
 		return this.obj;
 	}
+	public int getZOrder(){
+		return 2;
+	}
 }

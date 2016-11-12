@@ -42,11 +42,11 @@ public class GUI extends JFrame implements InterfazGui{
 		armarTimer();
 		
 		panelObstaculos.setVisible(true);
-		
-		player.getGrafico().getGrafico().setBounds((int)player.getX(), (int)player.getY(),32,32);
-		
-		player.getGrafico().getGrafico().setOpaque(false);
 		panelObstaculos.add(player.getGrafico().getGrafico());
+		panelObstaculos.setComponentZOrder(player.getGrafico().getGrafico(), 2);
+		player.getGrafico().getGrafico().setBounds((int)player.getX(), (int)player.getY(),32,32);
+		player.getGrafico().getGrafico().setOpaque(false);
+	
 		this.setVisible(true);
 		addKeyListener(new KeyAdapter() {
 			@Override
@@ -132,7 +132,6 @@ public class GUI extends JFrame implements InterfazGui{
 	@Override
 	public void armarHits() {
 		int h=juego.getJugador().getHits();
-		System.out.println(h+"");
 		hits=new EntidadGrafica("/imagenes/numeros/"+h%10+".png",25,24);
 		this.panelObstaculos.add(hits.getGrafico());
 		this.panelObstaculos.setComponentZOrder(hits.getGrafico(), 0);
@@ -154,13 +153,13 @@ public class GUI extends JFrame implements InterfazGui{
 			for(int j=0;j<mapa.getTamaño();j++){
 				if(mapa.getCelda(i, j)!=null && mapa.getCelda(i, j).getGrafico().getImagen()!="/imagenes/marron.png"){
 					panelObstaculos.add(mapa.getCelda(i, j).getEntidadGrafica().getGrafico());
-					panelObstaculos.setComponentZOrder(mapa.getCelda(i, j).getEntidadGrafica().getGrafico(), 0);
-					mapa.getCelda(i, j).getEntidadGrafica().getGrafico().setOpaque(false);
+					//System.out.println(mapa.getCelda(i, j).getZOrder());
+					panelObstaculos.setComponentZOrder(mapa.getCelda(i, j).getEntidadGrafica().getGrafico(),mapa.getCelda(i, j).getZOrder() );
 					mapa.getCelda(i, j).getEntidadGrafica().getGrafico().setBounds(i*w, j*h, w, h);
+					mapa.getCelda(i, j).getEntidadGrafica().getGrafico().setOpaque(false);
 				}
 			}
 		}
-		getContentPane().setComponentZOrder(player.getGrafico().getGrafico(), 0);
 		this.getContentPane().repaint();
 		this.getContentPane().revalidate();
 	}

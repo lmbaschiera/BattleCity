@@ -63,11 +63,9 @@ public class preGUI extends JFrame{
 			switch(arg.getKeyCode()){
 			case KeyEvent.VK_UP :
 				opt=!opt;
-				System.out.println(opt);
 				break;
 			case KeyEvent.VK_DOWN :
 				opt=!opt;
-				System.out.println(opt);
 				break;
 			case KeyEvent.VK_ENTER :
 				ejecutar();

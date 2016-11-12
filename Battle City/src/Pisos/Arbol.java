@@ -28,4 +28,8 @@ public class Arbol extends Celda{
 		// TODO Auto-generated method stub
 		
 	}
+	@Override
+	public int getZOrder(){
+		return 0;
+	}
 }

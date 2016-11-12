@@ -84,6 +84,9 @@ public class Juego{
 		} 
 		boolean puede;
 		puede=mapa.getCelda((int)(x/h),(int) (y/w)).PuedePasarTanque();
+		if(mapa.getCelda((int)(x/h),(int) (y/w)).getPU()!=null){
+			t.serAfectado(mapa.getCelda((int)(x/h),(int) (y/w)).getPU());
+		}
 		if(puede){
 			Iterator<Tanque>it=tanques.iterator();
 			while(it.hasNext() && puede){
