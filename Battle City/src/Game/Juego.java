@@ -236,7 +236,6 @@ public class Juego{
 	    
 	    }
 	    this.mapa.getCelda(celdaX, celdaY).setPU(p);
-	    System.out.println("cx:"+celdaX+" cy:"+celdaY);
 	    gui.levantarEntidad(p);
 		
 	}
