@@ -5,7 +5,6 @@ import java.util.LinkedList;
 import java.util.Random;
 
 import PU.*;
-import Pisos.*;
 import Tanque.*;
 
 public class Juego{
@@ -84,7 +83,7 @@ public class Juego{
 		} 
 		boolean puede;
 		puede=mapa.getCelda((int)(x/h),(int) (y/w)).PuedePasarTanque();
-		if(mapa.getCelda((int)(x/h),(int) (y/w)).getPU()!=null){
+		if(mapa.getCelda((int)(x/h),(int) (y/w)).getPU()!=null && t==player){
 			t.serAfectado(mapa.getCelda((int)(x/h),(int) (y/w)).getPU());
 			aumentarPuntaje(500);
 			gui.eliminarEntidad(mapa.getCelda((int)(x/h),(int) (y/w)).getPU().getGrafico());
@@ -189,11 +188,9 @@ public class Juego{
 		float[] toRet={164,480};
 		return toRet;
 	}
-	@SuppressWarnings("unused")
 	public void gameOver(){
 		CEON.terminate();
 		DE.terminate();
-	//	T.terminate();
 		gui.setVisible(false);
 		gui.dispose();
 		new postGUI(puntaje);
@@ -239,6 +236,7 @@ public class Juego{
 	    
 	    }
 	    this.mapa.getCelda(celdaX, celdaY).setPU(p);
+	    System.out.println("cx:"+celdaX+" cy:"+celdaY);
 	    gui.levantarEntidad(p);
 		
 	}

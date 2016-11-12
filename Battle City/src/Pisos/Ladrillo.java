@@ -16,7 +16,6 @@ public class Ladrillo extends Celda{
 
 	@Override
 	public boolean PuedePasarTanque() {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
@@ -34,7 +33,6 @@ public class Ladrillo extends Celda{
 		return null;
 	}
 	public boolean PuedePasarDisparo() {
-		// TODO Auto-generated method stub
 		return false;
 	}
 

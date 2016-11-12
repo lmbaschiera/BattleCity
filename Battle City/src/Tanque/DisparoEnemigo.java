@@ -16,7 +16,7 @@ public class DisparoEnemigo extends Disparo {
 					posX+=corrimiento_x*velocidad;
 					posY+=corrimiento_y*velocidad;
 					gui.moverEntidad(this.grafico, (int)posX, (int)posY);
-					Thread.sleep(10);
+					Thread.sleep(15);
 				}
 				else{
 					execute=false;

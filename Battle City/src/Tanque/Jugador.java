@@ -91,6 +91,7 @@ public class Jugador extends Tanque {
 	
 	public void serAfectado(PowerUp p){
 		p.afectar(this);
+		
 	}
 	private void resetearJugador(){
 		float[] posIniciales=juego.getPosXInicialTanque();

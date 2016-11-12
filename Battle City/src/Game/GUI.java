@@ -141,19 +141,19 @@ public class GUI extends JFrame implements InterfazGui{
 	}
 	public void moverEntidad(EntidadGrafica move, int x, int y){
 		move.getGrafico().setBounds(x, y, move.getW(), move.getH());
-		this.getContentPane().revalidate();
 		this.getContentPane().repaint();
+		this.getContentPane().revalidate();
 	}
 	public void levantarMapa(InterfazMapa map){
 		this.mapa=map;
 		EntidadGrafica aux = new EntidadGrafica("/imagenes/suelo.png", 0, 0);
 		aux.getGrafico().setBounds(0, -233, 1024, 1024); // 272
 		panelObstaculos.add(aux.getGrafico());
+		aux.getGrafico().setOpaque(false);
 		for(int i=0;i<mapa.getTamaño();i++){
 			for(int j=0;j<mapa.getTamaño();j++){
 				if(mapa.getCelda(i, j)!=null && mapa.getCelda(i, j).getGrafico().getImagen()!="/imagenes/marron.png"){
 					panelObstaculos.add(mapa.getCelda(i, j).getEntidadGrafica().getGrafico());
-					//System.out.println(mapa.getCelda(i, j).getZOrder());
 					panelObstaculos.setComponentZOrder(mapa.getCelda(i, j).getEntidadGrafica().getGrafico(),mapa.getCelda(i, j).getZOrder() );
 					mapa.getCelda(i, j).getEntidadGrafica().getGrafico().setBounds(i*w, j*h, w, h);
 					mapa.getCelda(i, j).getEntidadGrafica().getGrafico().setOpaque(false);
@@ -168,8 +168,11 @@ public class GUI extends JFrame implements InterfazGui{
 	public void levantarEntidad(GameObject go){
 		JLabel l=go.getGrafico().getGrafico();
 		this.panelObstaculos.add(l);
-		this.panelObstaculos.setComponentZOrder(l, 1);
+		this.panelObstaculos.setComponentZOrder(l, 2);
 		l.setBounds((int)go.getPosX()*40,(int) go.getPosY()*40, go.getGrafico().getW(), go.getGrafico().getH());
+		l.setOpaque(false);
+		this.getContentPane().repaint();
+		this.getContentPane().revalidate();
 	}
 	
 	public void eliminarEntidad(EntidadGrafica e) {

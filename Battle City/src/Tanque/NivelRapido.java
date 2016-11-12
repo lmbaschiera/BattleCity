@@ -5,7 +5,7 @@ public class NivelRapido extends Nivel{
 		this.DisparosSimultaneos=1;
 		this.GolpesQueResiste=1;
 		this.VelocidadD=2;
-		this.VelocidadM=3;  ///// aca tiene que ir 2
+		this.VelocidadM=2;  ///// aca tiene que ir 2
 		this.img=new String[4];
 		this.img[0]="/imagenes/enemy3-37.png";
 		this.img[1]="/imagenes/enemy3-38.png";
