@@ -51,7 +51,7 @@ public class Jugador extends Tanque {
 				}
 				break;
 			}
-			this.juego.jugadorActivaPw(posX,posY);
+			
 			if(lastMovement!=k){
 				lastMovement=k;
 				getGrafico().cambiarImagen(getNivel().getImg(k));

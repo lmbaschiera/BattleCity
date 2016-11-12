@@ -86,6 +86,9 @@ public class Juego{
 		puede=mapa.getCelda((int)(x/h),(int) (y/w)).PuedePasarTanque();
 		if(mapa.getCelda((int)(x/h),(int) (y/w)).getPU()!=null){
 			t.serAfectado(mapa.getCelda((int)(x/h),(int) (y/w)).getPU());
+			aumentarPuntaje(500);
+			gui.eliminarEntidad(mapa.getCelda((int)(x/h),(int) (y/w)).getPU().getGrafico());
+			mapa.getCelda((int)(x/h),(int) (y/w)).setPU(null);
 		}
 		if(puede){
 			Iterator<Tanque>it=tanques.iterator();
@@ -241,17 +244,6 @@ public class Juego{
 	}
 	public int cantEnemigosON(){
 		return tanques.size()-1;
-	}
-	public void jugadorActivaPw(float x, float y) {
-		Celda c = this.mapa.getCelda((int)x/40,(int) y/40);
-		if (c != null){
-			if (c.getPU()!=null){
-				aumentarPuntaje(500);
-				this.player.serAfectado( c.getPU());
-				gui.eliminarEntidad(c.getPU().getGrafico());
-				c.setPU(null);
-			}
-		}
 	}
 	public Enemigo getEnemigo(int i){
 		return (Enemigo)tanques.get(i);
