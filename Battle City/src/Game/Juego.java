@@ -16,6 +16,7 @@ public class Juego{
 	private int puntaje, time;
 	private static int h=40;
 	private static int w=40;
+	private Sonido s;
 	private int activadorPU;
 	private ControladorEnemigosON CEON;
 	private DisparadorEnemigos DE;
@@ -45,6 +46,8 @@ public class Juego{
 		DE=new DisparadorEnemigos(this);
 		DE.start();
 		gui.armarHits();
+		s = new Sonido("musica2");
+		s.loop();
 		T=new Timer(this);
 		T.start();
 	}
@@ -189,6 +192,7 @@ public class Juego{
 		return toRet;
 	}
 	public void gameOver(){
+		s.frenar();
 		CEON.terminate();
 		DE.terminate();
 		gui.setVisible(false);

@@ -3,6 +3,7 @@ package Pisos;
 import Game.EntidadGrafica;
 import Game.InterfazMapa;
 import Game.Juego;
+import Game.Sonido;
 import Tanque.Disparo;
 
 public class Ladrillo extends Celda{
@@ -42,6 +43,8 @@ public class Ladrillo extends Celda{
 		if(vida>0)
 			grafico.cambiarImagen(this.setImg());
 		else{
+			Sonido s = new Sonido("Break");
+			s.play();
 			mapa.eliminarCelda(this);
 		}
 	}

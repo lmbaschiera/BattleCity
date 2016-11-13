@@ -2,6 +2,7 @@ package PU;
 
 import Game.EntidadGrafica;
 import Game.Juego;
+import Game.Sonido;
 import Tanque.Jugador;
 
 public class TanquePU extends PowerUp{
@@ -18,6 +19,8 @@ public class TanquePU extends PowerUp{
 
 	@Override
 	public void afectar(Jugador j) {
+		Sonido s = new Sonido("1up");
+		s.play();
 		j.aumentarVida();
 	}
 
