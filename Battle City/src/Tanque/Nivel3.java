@@ -9,10 +9,10 @@ public class Nivel3 extends Nivel{
 		this.VelocidadD=2;
 		this.VelocidadM=2;
 		this.img=new String[4];
-		this.img[0]="/imagenes/lvl3-37.png";
-		this.img[1]="/imagenes/lvl3-38.png";
-		this.img[2]="/imagenes/lvl3-39.png";
-		this.img[3]="/imagenes/lvl3-40.png";
+		this.img[0]="/imagenes/lvl3-37"+state+".png";
+		this.img[1]="/imagenes/lvl3-38"+state+".png";
+		this.img[2]="/imagenes/lvl3-39"+state+".png";
+		this.img[3]="/imagenes/lvl3-40"+state+".png";
 	}
 
 	@Override
@@ -37,5 +37,11 @@ public class Nivel3 extends Nivel{
 					return 1;
 			}
 		}				
+	}
+	public void refreshImg() {
+		this.img[0]="/imagenes/lvl3-37"+state+".png";
+		this.img[1]="/imagenes/lvl3-38"+state+".png";
+		this.img[2]="/imagenes/lvl3-39"+state+".png";
+		this.img[3]="/imagenes/lvl3-40"+state+".png";
 	}
 }

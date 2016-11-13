@@ -13,10 +13,10 @@ public class Nivel4 extends Nivel {
 		this.img[1]="/imagenes/alternativo38.png";
 		this.img[2]="/imagenes/alternativo39.png";
 		this.img[3]="/imagenes/alternativo40.png";*/
-		this.img[0]="/imagenes/lvl4-37.png";
-		this.img[1]="/imagenes/lvl4-38.png";
-		this.img[2]="/imagenes/lvl4-39.png";
-		this.img[3]="/imagenes/lvl4-40.png";
+		this.img[0]="/imagenes/lvl4-37"+state+".png";
+		this.img[1]="/imagenes/lvl4-38"+state+".png";
+		this.img[2]="/imagenes/lvl4-39"+state+".png";
+		this.img[3]="/imagenes/lvl4-40"+state+".png";
 	}
 
 	@Override
@@ -41,5 +41,11 @@ public class Nivel4 extends Nivel {
 					return 0;
 			}
 		}				
+	}
+	public void refreshImg() {
+		this.img[0]="/imagenes/lvl4-37"+state+".png";
+		this.img[1]="/imagenes/lvl4-38"+state+".png";
+		this.img[2]="/imagenes/lvl4-39"+state+".png";
+		this.img[3]="/imagenes/lvl4-40"+state+".png";
 	}
 }

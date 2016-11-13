@@ -132,7 +132,7 @@ public class GUI extends JFrame implements InterfazGui{
 	@Override
 	public void armarHits() {
 		int h=juego.getJugador().getHits();
-		hits=new EntidadGrafica("/imagenes/numeros/"+h%10+".png",25,24);
+		hits=new EntidadGrafica("/imagenes/numeros/"+h+".png",25,24);
 		this.panelObstaculos.add(hits.getGrafico());
 		this.panelObstaculos.setComponentZOrder(hits.getGrafico(), 0);
 		hits.getGrafico().setBounds(565, 250, 25, 24);
@@ -168,7 +168,7 @@ public class GUI extends JFrame implements InterfazGui{
 	public void levantarEntidad(GameObject go){
 		JLabel l=go.getGrafico().getGrafico();
 		this.panelObstaculos.add(l);
-		this.panelObstaculos.setComponentZOrder(l, 2);
+		this.panelObstaculos.setComponentZOrder(l, 1);
 		l.setBounds((int)go.getPosX()*40,(int) go.getPosY()*40, go.getGrafico().getW(), go.getGrafico().getH());
 		l.setOpaque(false);
 		this.getContentPane().repaint();

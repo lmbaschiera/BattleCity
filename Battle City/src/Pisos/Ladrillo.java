@@ -26,7 +26,7 @@ public class Ladrillo extends Celda{
 		case(3):
 			return "/imagenes/amarillo.png";
 		case(2):
-			return "/imagenes/azul.png";
+			return "/imagenes/violeta.png";
 		case(1):
 			return "/imagenes/verde.png";
 		}

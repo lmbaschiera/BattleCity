@@ -14,8 +14,8 @@ public class Enemigo extends Tanque implements Runnable{
 	public Enemigo(float x, float y, Juego juego,InterfazGui gui,byte nivel){
 		switch(nivel){
 		case 0:
-				level=new NivelLento();
-				break;
+			level=new NivelLento();
+			break;
 		case 1:
 			level=new NivelRapido();
 			break;
@@ -106,14 +106,19 @@ public class Enemigo extends Tanque implements Runnable{
 		
 	}
 	public void efectuarDisparo(){
-			if(disparosDisponibles>0){
-				Disparo disparo=new DisparoEnemigo(this.juego,gui,this,level.VelocidadD,level.getdestruyeMetal(),(int)posX+13,(int)posY+13,this.lastMovement);
-				disparosDisponibles--;
-				gui.levantarEntidad(disparo);
-				Thread t=new Thread(disparo);
-				t.start();
-			}
+		try {
+			Thread.sleep(200);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
 		}
+		if(disparosDisponibles>0){
+			Disparo disparo=new DisparoEnemigo(this.juego,gui,this,level.VelocidadD,level.getdestruyeMetal(),(int)posX+13,(int)posY+13,this.lastMovement);
+			disparosDisponibles--;
+			gui.levantarEntidad(disparo);
+			Thread t=new Thread(disparo);
+			t.start();
+		}
+	}
 	public int getPuntaje(){
 		return level.getPuntaje();
 	}

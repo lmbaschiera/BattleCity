@@ -8,6 +8,7 @@ public abstract class Nivel {
 	protected int DisparosSimultaneos;
 	protected boolean destruyeMetal;
 	protected String[] img;
+	protected String state="";
 	
 	public int getGolpesQueResiste(){
 		return this.GolpesQueResiste;
@@ -32,4 +33,5 @@ public abstract class Nivel {
 	public int getEnemigoRandom(){
 		return 0;
 	}
+	public abstract void refreshImg();
 }

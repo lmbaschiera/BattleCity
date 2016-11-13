@@ -23,4 +23,5 @@ public class NivelPoder extends Nivel{
 	public int getPuntaje(){
 		return 300;
 	}
+	public void refreshImg() {}
 }

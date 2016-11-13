@@ -16,21 +16,34 @@ public class Metal extends Celda {
 
 	@Override
 	public boolean PuedePasarTanque() {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
 	
 	public boolean PuedePasarDisparo() {
-		// TODO Auto-generated method stub
 		return false;
+	}
+	public String setImg(){
+		switch(vida){
+		case(4):
+			return "/imagenes/blanco.png";
+		case(3):
+			return "/imagenes/blanco2.png";
+		case(2):
+			return "/imagenes/blanco3.png";
+		case(1):
+			return "/imagenes/blanco4.png";
+		}
+		return null;
 	}
 
 	@Override
 	public void serAfectado(Disparo d,Juego j) {
 		if (d.canI()){
 			vida--;
-			if(vida==0)
+			if (vida>0)
+				grafico.cambiarImagen(this.setImg());
+			else
 				mapa.eliminarCelda(this);
 		}
 	}

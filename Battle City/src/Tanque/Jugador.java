@@ -51,11 +51,8 @@ public class Jugador extends Tanque {
 				}
 				break;
 			}
-			
-			if(lastMovement!=k){
-				lastMovement=k;
-				getGrafico().cambiarImagen(getNivel().getImg(k));
-			}
+			lastMovement=k;
+			getGrafico().cambiarImagen(getNivel().getImg(k));
 			gui.moverEntidad(this.getGrafico(), (int)posX, (int)posY);
 			
 	}
@@ -63,6 +60,14 @@ public class Jugador extends Tanque {
 		return vida;
 	}
 	public void setInvulnerable(){
+		if (!invulnerable){
+			this.level.state="-inv";
+			this.level.refreshImg();
+		}
+		else{
+			this.level.state="";
+			this.level.refreshImg();
+		}
 		invulnerable=(!invulnerable);
 	}
 	public void efectuarDisparo(){

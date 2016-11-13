@@ -23,4 +23,5 @@ public class NivelBlindado extends Nivel{
 	public int getPuntaje(){
 		return 400;
 	}
+	public void refreshImg() {}
 }

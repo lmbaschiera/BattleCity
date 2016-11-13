@@ -23,4 +23,5 @@ public class NivelRapido extends Nivel{
 	public int getPuntaje(){
 		return 200;
 	}
+	public void refreshImg() {}
 }

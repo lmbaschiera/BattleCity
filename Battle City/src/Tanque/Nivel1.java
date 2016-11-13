@@ -9,10 +9,10 @@ public class Nivel1 extends Nivel{
 		this.VelocidadD=1;
 		this.VelocidadM=1;  ///// aca tiene que ir 2
 		this.img=new String[4];
-		this.img[0]="/imagenes/lvl1-37.png";
-		this.img[1]="/imagenes/lvl1-38.png";
-		this.img[2]="/imagenes/lvl1-39.png";
-		this.img[3]="/imagenes/lvl1-40.png";
+		this.img[0]="/imagenes/lvl1-37"+state+".png";
+		this.img[1]="/imagenes/lvl1-38"+state+".png";
+		this.img[2]="/imagenes/lvl1-39"+state+".png";
+		this.img[3]="/imagenes/lvl1-40"+state+".png";
 	}
 
 	@Override
@@ -37,5 +37,13 @@ public class Nivel1 extends Nivel{
 					return 3;
 			}
 		}				
+	}
+
+	@Override
+	public void refreshImg() {
+		this.img[0]="/imagenes/lvl1-37"+state+".png";
+		this.img[1]="/imagenes/lvl1-38"+state+".png";
+		this.img[2]="/imagenes/lvl1-39"+state+".png";
+		this.img[3]="/imagenes/lvl1-40"+state+".png";
 	}
 }

@@ -23,4 +23,5 @@ public class NivelLento extends Nivel{
 	public int getPuntaje(){
 		return 100;
 	}
+	public void refreshImg() {}
 }
