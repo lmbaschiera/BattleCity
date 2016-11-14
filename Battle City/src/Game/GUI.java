@@ -62,17 +62,6 @@ public class GUI extends JFrame implements InterfazGui{
 					
 					switch(arg0.getKeyChar()){
 					
-
-					case 'u':
-						PowerUp p = new Frenar(juego, 0, 0);
-						p.afectar(player);
-						break;
-					
-					case'p':
-						player.subirNivel().getVelocidadM();
-						
-						break;
-					
 					case KeyEvent.VK_SPACE:
 						player.efectuarDisparo();
 						break;
