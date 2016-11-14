@@ -20,6 +20,7 @@ public class Juego{
 	private int activadorPU;
 	private ControladorEnemigosON CEON;
 	private DisparadorEnemigos DE;
+	private boolean sonido;
 	public Juego(){
 		preGUI p=new preGUI();
 		try {
@@ -46,12 +47,22 @@ public class Juego{
 		DE=new DisparadorEnemigos(this);
 		DE.start();
 		gui.armarHits();
-		s = new Sonido("musica2");
+		s = new Sonido("musica");
 		s.loop();
+		sonido=true;
 		T=new Timer(this);
 		T.start();
 	}
-	
+	public void musica(){
+		if (sonido){
+			s.frenar();
+			sonido=!sonido;
+		}
+		else{
+			s.loop();
+			sonido=!sonido;
+		}
+	}
 	public void aumentarPuntaje(int i){
 		this.puntaje+=i;
 		gui.armarScore();

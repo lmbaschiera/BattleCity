@@ -2,6 +2,7 @@ package PU;
 
 import Game.EntidadGrafica;
 import Game.Juego;
+import Game.Sonido;
 import Tanque.Jugador;
 
 public class Casco extends PowerUp {
@@ -16,6 +17,9 @@ public class Casco extends PowerUp {
 	public void run() {
 		int tiempo =5000;
 		this.juego.getJugador().setInvulnerable();
+		this.juego.musica();
+		Sonido s=new Sonido("starman");
+		s.loop();
 		int actual = 0;
 		while (tiempo>actual){
 			actual+=100;
@@ -25,6 +29,8 @@ public class Casco extends PowerUp {
 				e.printStackTrace();
 			}}
 		this.juego.getJugador().setInvulnerable();
+		s.frenar();
+		this.juego.musica();
 	}
 
 	@Override
