@@ -4,7 +4,6 @@
 
 *.pydevproject
 .metadata
-.project
 .recommenders
 bin/
 tmp/
